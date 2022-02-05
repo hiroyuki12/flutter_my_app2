@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/QiitaScreen.dart';
+import 'pages/CupertinoButton.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,6 +45,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Qiita()),
+                );
+              },
+            ),
+            RaisedButton(
+              child: Text('CupertinoButton'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyCupertinoButton()),
                 );
               },
             ),
