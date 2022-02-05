@@ -34,9 +34,11 @@ class MyHomePage extends StatefulWidget {
 class Item {
   Item({
     this.title,
+    this.profileImageUrl,
   });
 
   final String? title;
+  final String? profileImageUrl;
 }
 
 class Issue {
@@ -77,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
         final qiitaItem = element as Map;
         _qiitaItems.add(Item(
           title: qiitaItem['title'] as String,
+          profileImageUrl: qiitaItem['user']['profile_image_url'] as String,
         ));
       });
 
@@ -110,6 +113,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
           final qiitaItem = _qiitaItems[index];
           return ListTile(
+            leading: ClipOval(
+              child: Image.network(qiitaItem.profileImageUrl!),
+            ),
             title: Text(qiitaItem.title!),
           );
 
