@@ -29,9 +29,8 @@ class _State extends State<Qiita> {
   
   // This widget is the root of your application.
   Future<void> _load() async {
-    //String url = 'http://qiita.com/api/v2/items';
-    String url = 'https://qiita.com/api/v2/tags/Flutter/items?page=1&per_page=20';
-    final res = await http.get(Uri.parse(url));
+    //final res = await http.get(Uri.parse('https://qiita.com/api/v2/items'));
+    final res = await http.get(Uri.parse('https://qiita.com/api/v2/tags/Flutter/items?page=1&per_page=20'));
     final data = json.decode(res.body);
     setState(() {
       final issues = data as List;
@@ -62,8 +61,8 @@ class _State extends State<Qiita> {
 
           final issue = _items[index];
           return ListTile(
-            leading: ClipOval(
-              child: Image.network(issue.profileImageUrl!),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(issue.profileImageUrl!),
             ),
             title: Text(issue.title!),
           );
