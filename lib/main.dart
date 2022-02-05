@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/QiitaScreen.dart';
 import 'pages/CupertinoButton.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,16 +32,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text("main", style: new TextStyle(color: CupertinoColors.white)),
+        backgroundColor: const Color(0xff333333),
       ),
-      body: Center(
+
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              child: Text('Qiita'),
+            CupertinoButton(
+              child: Text("Qiita"),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -48,8 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            RaisedButton(
-              child: Text('CupertinoButton'),
+            CupertinoButton(
+              child: Text("CupertinoButton"),
               onPressed: () {
                 Navigator.push(
                   context,
