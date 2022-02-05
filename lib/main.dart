@@ -31,6 +31,14 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class Item {
+  Item({
+    this.title,
+  });
+
+  final String? title;
+}
+
 class Issue {
   Issue({
     this.title,
@@ -45,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _data = '';
   List<String> _titles = <String>[];
   List<Issue> _issues = <Issue>[];
+  List<Item> _qiitaItems= <Item>[];
 
   @override
   void initState() {
@@ -53,13 +62,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _load() async {
-    String url = 'https://api.github.com/repositories/31792824/issues';
+    //String url = 'https://api.github.com/repositories/31792824/issues';
+    //final res = await http.get(Uri.parse(url));
+    //final data = json.decode(res.body);
+    String url = 'http://qiita.com/api/v2/items';
     final res = await http.get(Uri.parse(url));
     final data = json.decode(res.body);
 
     setState(() {
-      _data = res.body;
+      //_data = res.body;
 
+      final qiitaItems = data as List;
+      qiitaItems.forEach((dynamic element) {
+        final qiitaItem = element as Map;
+        _qiitaItems.add(Item(
+          title: qiitaItem['title'] as String,
+        ));
+      });
+
+      /*
       final issues = data as List;
       issues.forEach((dynamic element) {
         final issue = element as Map;
@@ -69,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
           avatarUrl: issue['user']['avatar_url'] as String,
         ));
       });
+      */
 
     });
   }
@@ -79,14 +101,19 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      //body: Text(_data),
       
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) {
-          //if (index >= _titles.length) {
+          //if (index >= _qiitaItems.length) {
           //  return null;
           //}
 
+          final qiitaItem = _qiitaItems[index];
+          return ListTile(
+            title: Text(qiitaItem.title!),
+          );
+
+          /*
           final issue = _issues[index];
           return ListTile(
             leading: ClipOval(
@@ -94,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             title: Text(issue.title!),
           );
+          */
         },
       ),
       
