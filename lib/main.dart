@@ -43,22 +43,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CupertinoButton(
-              child: Text("Qiita"),
-              onPressed: () {
+              child: Text("Push Qiita"),
+              onPressed: () => 
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Qiita()),
-                );
-              },
+                  context, MaterialPageRoute(builder: (context) => Qiita())
+                ),
             ),
             CupertinoButton(
-              child: Text("CupertinoButton"),
-              onPressed: () {
+              child: Text("Push CupertinoButton"),
+              onPressed: () => 
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyCupertinoButton()),
-                );
-              },
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoButton())
+                ),
             ),
           ],
         ),
