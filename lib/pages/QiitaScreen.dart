@@ -29,7 +29,8 @@ class _State extends State<Qiita> {
   
   // This widget is the root of your application.
   Future<void> _load() async {
-    String url = 'http://qiita.com/api/v2/items';
+    //String url = 'http://qiita.com/api/v2/items';
+    String url = 'https://qiita.com/api/v2/tags/Flutter/items?page=1&per_page=20';
     final res = await http.get(Uri.parse(url));
     final data = json.decode(res.body);
     setState(() {
