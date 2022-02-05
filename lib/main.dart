@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CupertinoButton(
-              child: Text("Push Qiita"),
+              child: Text("Push Qiita(API) Flutter"),
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Qiita())
