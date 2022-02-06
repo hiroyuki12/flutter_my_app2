@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_share/flutter_share.dart';
@@ -11,19 +13,20 @@ class MyCupertinoWebView extends StatefulWidget {
   final String? title;
 
   @override
-  State<StatefulWidget> createState() {
-    return _State();
-  }
+  _State createState() => _State();
 }
 
 class _State extends State<MyCupertinoWebView> {
-  WebViewController? _controller;
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
+
+  bool _isLoading = false;
+  String _title = '';
 
   @override
   Widget build(BuildContext context) {
     isDarkMode = true; // switch darkMode
     return CupertinoPageScaffold(
-      // backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
         middle: Text("CupertinoWebView", style: _buildTextStyle()),
         trailing: GestureDetector(
@@ -39,15 +42,31 @@ class _State extends State<MyCupertinoWebView> {
         backgroundColor:
             isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       ),
+
       child: Center(
         child: WebView(
           initialUrl: widget.url,
           javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController controller) {
-            _controller = controller;
+          onWebViewCreated: _controller.complete,
+          onPageStarted: (String url) {
+            setState(() {
+              _isLoading = true;
+            });
           },
-        ),
-      ),
+          onPageFinished: (String url) async {
+            setState(() {
+              _isLoading = false;
+            });
+            final controller = await _controller.future;
+            final title = await controller.getTitle();
+            setState(() {
+              if (title != null) {
+                _title = title;
+              }
+            });
+          }
+        ),  //WebView
+      ),  //Center
     );
   }
 }
