@@ -144,7 +144,9 @@ class _State extends State<Qiita> {
         ),
       ),
 
-      child: ListView.builder(
+      child: (_items == null || _items.length == 0)?
+          Text("Loading....",style: _buildTextStyle(),) :
+        ListView.builder(
         controller: _scrollController,
         itemBuilder: (BuildContext context, int index) {
           //if (index >= _items.length) {
