@@ -4,6 +4,7 @@ import 'DarkModeColor.dart';
 import 'CupertinoHelloWorld.dart';
 import 'CupertinoHome.dart';
 import 'CupertinoListView.dart';
+import 'CupertinoLocalAuthentication.dart';
 
 class CupertinoMenu2 extends StatefulWidget {
   @override
@@ -40,6 +41,13 @@ class _State extends State<CupertinoMenu2> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoListView())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoLocalAuthentication"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoLocalAuthentication())
                 ),
             ),
 
