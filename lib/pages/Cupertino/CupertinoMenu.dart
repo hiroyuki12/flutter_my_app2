@@ -8,6 +8,7 @@ import 'CupertinoActivityIndicator.dart';
 import 'CupertinoAlertDialog.dart';
 import 'CupertinoBuildingLayouts.dart';
 import 'CupertinoClose.dart';
+import 'CupertinoWebView.dart';
 
 class CupertinoMenu extends StatefulWidget {
   @override
@@ -79,6 +80,14 @@ class _State extends State<CupertinoMenu> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoClose())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoWebView"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoWebView(
+                    url: "http://www.google.com", title: "CupertinoWebView"))
                 ),
             ),
 
