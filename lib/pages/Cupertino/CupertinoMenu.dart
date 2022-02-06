@@ -7,6 +7,7 @@ import 'CupertinoActionSheet.dart';
 import 'CupertinoActivityIndicator.dart';
 import 'CupertinoAlertDialog.dart';
 import 'CupertinoBuildingLayouts.dart';
+import 'CupertinoClose.dart';
 
 class CupertinoMenu extends StatefulWidget {
   @override
@@ -71,6 +72,13 @@ class _State extends State<CupertinoMenu> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoBuildingLayouts())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoClose"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoClose())
                 ),
             ),
 
