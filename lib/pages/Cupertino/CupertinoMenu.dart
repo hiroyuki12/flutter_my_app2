@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
+import 'CupertinoMenu2.dart';
 import 'TestCupertinoWebView.dart';
 import 'CupertinoButton.dart';
 import 'CupertinoActionSheet.dart';
@@ -13,6 +14,7 @@ import 'CupertinoDarkModeFlag.dart';
 import 'CupertinoDatePicker.dart';
 import 'CupertinoFlutterIssues.dart';
 import 'CupertinoGridView.dart';
+import 'CupertinoHelloWorld.dart';
 
 class CupertinoMenu extends StatefulWidget {
   @override
@@ -37,6 +39,13 @@ class _State extends State<CupertinoMenu> {
       child: Center(
         child: Column(
           children: <Widget>[
+            CupertinoButton(
+              child: Text("Push CupertinoMenu2 ->"),
+              onPressed: () =>
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoMenu2())
+                ),
+            ),
             CupertinoButton(
               child: Text("Push TestCupertinoWebView"),
               onPressed: () =>
@@ -120,6 +129,13 @@ class _State extends State<CupertinoMenu> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoGridView())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoHelloWorld"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoHelloWorld())
                 ),
             ),
 
