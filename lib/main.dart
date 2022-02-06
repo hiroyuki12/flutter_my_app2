@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/QiitaScreen.dart';
 import 'pages/CupertinoButton.dart';
+import 'pages/TestCupertinoWebView.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             CupertinoButton(
               child: Text("Push Qiita(API) Flutter"),
-              onPressed: () => 
+              onPressed: () =>
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Qiita())
                 ),
@@ -54,6 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoButton())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push TestCupertinoWebView"),
+              onPressed: () =>
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => TestCupertinoWebView())
                 ),
             ),
           ],
