@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
+import 'CupertinoMenu3.dart';
 import 'CupertinoHelloWorld.dart';
 import 'CupertinoHome.dart';
 import 'CupertinoListView.dart';
@@ -38,6 +39,13 @@ class _State extends State<CupertinoMenu2> {
       child: Center(
         child: Column(
           children: <Widget>[
+            CupertinoButton(
+              child: Text("Push CupertinoMenu3 ->"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoMenu3())
+                ),
+            ),
             CupertinoButton(
               child: Text("Push CupertinoHome"),
               onPressed: () => 

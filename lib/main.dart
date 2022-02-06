@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
             ),
             CupertinoButton(
-              child: Text("Push Cupertino Menu"),
+              child: Text("Push Cupertino Menu ->"),
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoMenu())
