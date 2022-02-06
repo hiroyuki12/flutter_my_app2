@@ -9,6 +9,7 @@ import 'CupertinoLocalFile.dart';
 import 'CupertinoMenuListView.dart';
 import 'CupertinoPicker.dart';
 import 'CupertinoPlatform.dart';
+import 'CupertinoSegmentedControl.dart';
 
 class CupertinoMenu2 extends StatefulWidget {
   @override
@@ -80,6 +81,13 @@ class _State extends State<CupertinoMenu2> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoPlatform())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoSegmentedControl"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoSegmentedControl())
                 ),
             ),
 
