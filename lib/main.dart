@@ -64,6 +64,30 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
             ),
             CupertinoButton(
+              child: Text("Push Qiita(外部サイト)"),
+              onPressed: () =>
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                      MyCupertinoWebView(
+                        url: "https://qiita.com/tags/react",
+                        title: "Qiita Flutterの記事一覧"),
+                  ),
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push はてなブログタグ(外部サイト)"),
+              onPressed: () =>
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                      MyCupertinoWebView(
+                        url: "https://d.hatena.ne.jp/keyword/flutter",
+                        title: "はてなブログタグ Flutter"),
+                  ),
+                ),
+            ),
+            CupertinoButton(
               child: Text("Push CupertinoButton"),
               onPressed: () => 
                 Navigator.push(
