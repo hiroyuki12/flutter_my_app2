@@ -30,8 +30,7 @@ class Item {
  }
 
 class _State extends State<Qiita> {
-  //ScrollController _scrollController;
-  
+  ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
 
   List<Item> _items = <Item>[];
@@ -48,20 +47,22 @@ class _State extends State<Qiita> {
   final _tagSwift = 'swift';
   int _savedPage = 1;
   int _perPage = 20;
+  double _pageMaxScrollExtend = 877.0;  // Simulator iPhone 13, _perPage 20の時
+  double _maxScrollExtend = 877.0;
 
   @override
   void initState() {
     super.initState();
-    //_scrollController = ScrollController();
-    //_scrollController.addListener!(_scrollListener);
+    _scrollController.addListener(_scrollListener);
     _load(_savedPage, _perPage);
   }
 
   void _scrollListener() {
     // スクロールを検知したときに呼ばれる
-    //double positionRate =
-    //    _scrollController.offset / _scrollController.position.maxScrollExtent;
-    double positionRate = 0;
+    double positionRate =
+        //_scrollController.offset / _scrollController.position.maxScrollExtent;
+        (_scrollController.offset - (_pageMaxScrollExtend * (_savedPage - 1))) / _maxScrollExtend;
+
     if (positionRate > 0.99) {
       if (_isLoading == false) {
         _isLoading = true;
@@ -72,6 +73,7 @@ class _State extends State<Qiita> {
       }
     } else {
       _isLoading = false;
+      //print(_maxScrollExtend);
       print(positionRate);
     }
   }
@@ -79,7 +81,7 @@ class _State extends State<Qiita> {
 
   @override
   void dispose() {
-    //_scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
  
@@ -143,7 +145,7 @@ class _State extends State<Qiita> {
       ),
 
       child: ListView.builder(
-        //controller: _scrollController,
+        controller: _scrollController,
         itemBuilder: (BuildContext context, int index) {
           //if (index >= _items.length) {
           //  return null;
