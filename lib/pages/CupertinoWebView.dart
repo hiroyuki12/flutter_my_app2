@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_share/flutter_share.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'DarkModeColor.dart';
 
@@ -30,8 +30,8 @@ class _State extends State<MyCupertinoWebView> {
       navigationBar: CupertinoNavigationBar(
         middle: Text("CupertinoWebView", style: _buildTextStyle()),
         trailing: GestureDetector(
-          //onTap: () => FlutterShare.share(
-          //    title: 'title', text: widget.title, linkUrl: widget.url),
+          onTap: () => FlutterShare.share(
+              title: 'title', text: widget.title, linkUrl: widget.url),
 
           // chooserTitle: widget.title),
           child: Icon(
