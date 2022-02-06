@@ -12,6 +12,7 @@ import 'CupertinoWebView.dart';
 import 'CupertinoDarkModeFlag.dart';
 import 'CupertinoDatePicker.dart';
 import 'CupertinoFlutterIssues.dart';
+import 'CupertinoGridView.dart';
 
 class CupertinoMenu extends StatefulWidget {
   @override
@@ -112,6 +113,13 @@ class _State extends State<CupertinoMenu> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoFlutterIssues())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoGridView"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoGridView())
                 ),
             ),
 
