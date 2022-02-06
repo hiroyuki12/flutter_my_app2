@@ -5,6 +5,7 @@ import 'CupertinoHelloWorld.dart';
 import 'CupertinoHome.dart';
 import 'CupertinoListView.dart';
 import 'CupertinoLocalAuthentication.dart';
+import 'CupertinoLocalFile.dart';
 
 class CupertinoMenu2 extends StatefulWidget {
   @override
@@ -48,6 +49,13 @@ class _State extends State<CupertinoMenu2> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoLocalAuthentication())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoLocalFile"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoLocalFile())
                 ),
             ),
 
