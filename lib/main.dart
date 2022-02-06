@@ -3,6 +3,7 @@ import 'pages/QiitaScreen.dart';
 import 'pages/CupertinoButton.dart';
 import 'pages/TestCupertinoWebView.dart';
 import 'package:flutter/cupertino.dart';
+import 'pages/CupertinoWebView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,10 +45,22 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CupertinoButton(
-              child: Text("Push Qiita(API) Flutter"),
+              child: Text("Push Qiita(API)"),
               onPressed: () =>
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Qiita())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push Zenn(外部サイト)"),
+              onPressed: () =>
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                      MyCupertinoWebView(
+                        url: "https://zenn.dev/topics/flutter?order=latest",
+                        title: "Zenn Flutterの記事一覧"),
+                  ),
                 ),
             ),
             CupertinoButton(
