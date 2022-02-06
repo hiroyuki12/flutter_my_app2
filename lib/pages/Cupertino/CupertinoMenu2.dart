@@ -10,6 +10,8 @@ import 'CupertinoMenuListView.dart';
 import 'CupertinoPicker.dart';
 import 'CupertinoPlatform.dart';
 import 'CupertinoSegmentedControl.dart';
+import 'CupertinoSharedPreferences.dart';
+import 'CupertinoSignInButton.dart';
 
 class CupertinoMenu2 extends StatefulWidget {
   @override
@@ -88,6 +90,20 @@ class _State extends State<CupertinoMenu2> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoSegmentedControl())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoSharedPreferences"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoSharedPreferences())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoSignInButton"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoSignInButton())
                 ),
             ),
 
