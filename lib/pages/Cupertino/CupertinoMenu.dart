@@ -9,6 +9,7 @@ import 'CupertinoAlertDialog.dart';
 import 'CupertinoBuildingLayouts.dart';
 import 'CupertinoClose.dart';
 import 'CupertinoWebView.dart';
+import 'CupertinoDarkModeFlag.dart';
 
 class CupertinoMenu extends StatefulWidget {
   @override
@@ -88,6 +89,13 @@ class _State extends State<CupertinoMenu> {
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoWebView(
                     url: "http://www.google.com", title: "CupertinoWebView"))
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoDarkModeFlag"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoDarkModeFlag())
                 ),
             ),
 
