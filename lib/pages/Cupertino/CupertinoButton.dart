@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../DarkModeColor.dart';
+import 'DarkModeColor.dart';
 
 class MyCupertinoButton extends StatefulWidget {
   @override
