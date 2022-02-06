@@ -12,6 +12,7 @@ import 'CupertinoPlatform.dart';
 import 'CupertinoSegmentedControl.dart';
 import 'CupertinoSharedPreferences.dart';
 import 'CupertinoSignInButton.dart';
+import 'CupertinoSnackBar.dart';
 
 class CupertinoMenu2 extends StatefulWidget {
   @override
@@ -104,6 +105,13 @@ class _State extends State<CupertinoMenu2> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoSignInButton())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoSnackBar"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoSnackBar())
                 ),
             ),
 
