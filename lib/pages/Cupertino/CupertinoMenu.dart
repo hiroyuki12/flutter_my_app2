@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
+import 'TestCupertinoWebView.dart';
 import 'CupertinoButton.dart';
 import 'CupertinoActionSheet.dart';
 import 'CupertinoActivityIndicator.dart';
-import 'TestCupertinoWebView.dart';
+import 'CupertinoAlertDialog.dart';
 
 class CupertinoMenu extends StatefulWidget {
   @override
@@ -55,6 +56,13 @@ class _State extends State<CupertinoMenu> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoActivityIndicator())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoAlertDialog"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoAlertDialog())
                 ),
             ),
 
