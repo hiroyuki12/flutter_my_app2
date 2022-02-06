@@ -8,6 +8,7 @@ import 'CupertinoLocalAuthentication.dart';
 import 'CupertinoLocalFile.dart';
 import 'CupertinoMenuListView.dart';
 import 'CupertinoPicker.dart';
+import 'CupertinoPlatform.dart';
 
 class CupertinoMenu2 extends StatefulWidget {
   @override
@@ -72,6 +73,13 @@ class _State extends State<CupertinoMenu2> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoPicker())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoPlatform"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CupertinoPlatform())
                 ),
             ),
 
