@@ -20,14 +20,6 @@ class _State extends State<TestCupertinoWebView> {
   String _title = '';
 
   @override
-  void initState() {
-    super.initState();
-    if (Platform.isAndroid) {
-      WebView.platform = SurfaceAndroidWebView();
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     isDarkMode = true; // switch darkMode
     return CupertinoPageScaffold(
