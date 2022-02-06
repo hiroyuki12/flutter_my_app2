@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'CupertinoWebView.dart';
 
 class Qiita extends StatefulWidget {
   @override
@@ -172,13 +173,13 @@ class _State extends State<Qiita> {
                     type: MaterialType.transparency,
                     child: InkWell(
                       onTap: () {
-                        /* Navigator.of(context).push(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 MyCupertinoWebView(
                                     url: issue.url!, title: issue.title!),
                           ),
-                        ); */
+                        );
                       },
                       child: Text(
                         issue.title!,
