@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/QiitaScreen.dart';
 import 'pages/TestCupertinoWebView.dart';
 import 'package:flutter/cupertino.dart';
+import 'pages/Cupertino/CupertinoMenu.dart';
 import 'pages/CupertinoWebView.dart';
 import 'pages/Cupertino/CupertinoButton.dart';
 import 'pages/Cupertino/CupertinoActionSheet.dart';
@@ -89,24 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
             ),
             CupertinoButton(
-              child: Text("Push CupertinoButton"),
+              child: Text("Push Cupertino Menu"),
               onPressed: () => 
                 Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoButton())
-                ),
-            ),
-            CupertinoButton(
-              child: Text("Push CupertinoActionSheet"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoActionSheet())
-                ),
-            ),
-            CupertinoButton(
-              child: Text("Push TestCupertinoWebView"),
-              onPressed: () =>
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => TestCupertinoWebView())
+                  context, MaterialPageRoute(builder: (context) => CupertinoMenu())
                 ),
             ),
           ],
