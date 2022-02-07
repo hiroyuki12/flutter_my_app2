@@ -9,6 +9,7 @@ import 'CupertinoTwitter.dart';
 import 'CupertinoTwitterHome.dart';
 import 'CupertinoWebView.dart';
 import 'CupertinoNavigationBar.dart';
+import 'CupertinoSearchTextField.dart';
 
 class CupertinoMenu3 extends StatefulWidget {
   @override
@@ -88,6 +89,13 @@ class _State extends State<CupertinoMenu3> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoNavigationBar())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoSearchTextField"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoSearchTextField())
                 ),
             ),
 
