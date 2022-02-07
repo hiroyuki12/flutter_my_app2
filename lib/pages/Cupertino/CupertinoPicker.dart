@@ -28,6 +28,7 @@ class _State extends State<MyCupertinoPicker> {
                 return Container(
                   height: 300.0,
                   child: CupertinoPicker(
+                    backgroundColor: backColor,
                     onSelectedItemChanged: (value) {},
                     itemExtent: 30.0,
                     children: <Widget>[
