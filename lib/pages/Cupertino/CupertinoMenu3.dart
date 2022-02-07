@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
 import 'CupertinoHome.dart';
+import 'CupertinoSwitch.dart';
 
 class CupertinoMenu3 extends StatefulWidget {
   @override
@@ -27,10 +28,10 @@ class _State extends State<CupertinoMenu3> {
         child: Column(
           children: <Widget>[
             CupertinoButton(
-              child: Text("Push CupertinoHome"),
+              child: Text("Push CupertinoSwitch"),
               onPressed: () => 
                 Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoHome())
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoSwitch())
                 ),
             ),
 
