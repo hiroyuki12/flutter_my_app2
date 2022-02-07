@@ -7,6 +7,7 @@ import 'CupertinoTextField.dart';
 import 'CupertinoTimerPicker.dart';
 import 'CupertinoTwitter.dart';
 import 'CupertinoTwitterHome.dart';
+import 'CupertinoWebView.dart';
 
 class CupertinoMenu3 extends StatefulWidget {
   @override
@@ -71,6 +72,14 @@ class _State extends State<CupertinoMenu3> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoTwitterHome())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoWebView"),
+              onPressed: () =>
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoWebView(
+                    url: "http://www.google.com", title: "CupertinoWebView"))
                 ),
             ),
 
