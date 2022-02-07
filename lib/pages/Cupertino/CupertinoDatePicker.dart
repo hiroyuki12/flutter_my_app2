@@ -40,7 +40,8 @@ Widget _buildButton(BuildContext context, CupertinoDatePickerMode mode, String t
           return Container(
             height: 300.0,
             child: CupertinoDatePicker(
-              // backgroundColor: CupertinoColors.systemRed,
+              //backgroundColor: CupertinoColors.systemRed,
+              backgroundColor: backColor,  //white
               initialDateTime: DateTime.now(),
               mode: mode, //date, dateAndTime, time
               onDateTimeChanged: (dateTime) {
