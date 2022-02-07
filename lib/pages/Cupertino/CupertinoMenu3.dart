@@ -4,6 +4,7 @@ import 'DarkModeColor.dart';
 import 'CupertinoSwitch.dart';
 import 'CupertinoTabBar.dart';
 import 'CupertinoTextField.dart';
+import 'CupertinoTimerPicker.dart';
 
 class CupertinoMenu3 extends StatefulWidget {
   @override
@@ -47,6 +48,13 @@ class _State extends State<CupertinoMenu3> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoTextField())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoTimerPicker"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoTimerPicker())
                 ),
             ),
 
