@@ -24,7 +24,7 @@ class _State extends State<MyCupertinoSearchTextField> {
       backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
         backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
-        middle: Text("CupertinoTextField", style: _buildTextStyle()),
+        middle: Text("CupertinoSearchTextField", style: _buildTextStyle()),
       ),
       child: Center(
         child: 
