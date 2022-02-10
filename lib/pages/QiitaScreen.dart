@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 import 'CupertinoWebView.dart';
 
 class Qiita extends StatefulWidget {
@@ -176,14 +177,9 @@ class _State extends State<Qiita> {
                     //for InkWell
                     type: MaterialType.transparency,
                     child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                MyCupertinoWebView(
-                                    url: issue.url!, title: issue.title!),
-                          ),
-                        );
+                      onTap: () async {
+                        await _launchURL(
+                          issue.url!);
                       },
                       child: Text(
                         issue.title!,
@@ -292,4 +288,8 @@ String fromAtNow(String sentDateJst) {
   } else {
     return '$sec seconds ago';
   }
+}
+
+Future<void> _launchURL(String url) async {
+  await launch(url);
 }
