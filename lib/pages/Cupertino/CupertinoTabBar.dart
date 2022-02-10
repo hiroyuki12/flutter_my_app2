@@ -1,4 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'CupertinoHelloWorld.dart';
+import 'CupertinoButton.dart';
+import 'CupertinoAlertDialog.dart';
+import 'CupertinoFlutterIssues.dart';
 import 'DarkModeColor.dart';
 
 class MyCupertinoTabBar extends StatefulWidget {
@@ -11,59 +15,32 @@ class MyCupertinoTabBar extends StatefulWidget {
 class _State extends State<MyCupertinoTabBar> {
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true;
     return CupertinoTabScaffold(
-      backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
       tabBar: CupertinoTabBar(
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor: isDarkMode ? darkModeBackColor : backColor,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
-            icon: Icon(CupertinoIcons.book_solid),
+            backgroundColor: isDarkMode ? darkModeBackColor : backColor,
+            icon: Icon(CupertinoIcons.home),
           ),
           BottomNavigationBarItem(
-            backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
-            icon: Icon(CupertinoIcons.eye_solid),
+            icon: Icon(CupertinoIcons.search),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.bell),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.mail),
           ),
         ]
       ), 
       tabBuilder: (context, i) {
-        return CupertinoTabView(
-          builder: (context) {
-            return CupertinoPageScaffold(
-              backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
-              navigationBar: CupertinoNavigationBar(
-                backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
-                // middle: (i == 0) ? Text('Articles', style: _buildTextStyle()) : Text('Views', style: _buildTextStyle()),
-                middle: Text('CupertinoTabBar', style: _buildTextStyle()),
-              ),
-              child: Center(
-                child: CupertinoButton(
-                  child: Text(
-                    'This is tab #$i',
-                    style: CupertinoTheme.of(context)
-                      .textTheme
-                      .actionTextStyle
-                      .copyWith(fontSize: 32),
-                  ),
-                  onPressed: () {
-                  },
-                ),
-              ),
-            );
-          }
-        );
+        if (i==0)      return CupertinoHelloWorld();
+        else if(i==1)  return MyCupertinoButton();
+        else if(i==2)  return MyCupertinoAlertDialog();
+        else           return CupertinoFlutterIssues();
       }
     );
   }
-}
-
-var myTextStyle = new TextStyle();
-TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
-  fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
-  );
 }

@@ -10,7 +10,9 @@ import 'CupertinoTwitterHome.dart';
 import 'CupertinoWebView.dart';
 import 'CupertinoNavigationBar.dart';
 import 'CupertinoSearchTextField.dart';
+import 'CupertinoBottomNav.dart';
 import 'CupertinoSlider.dart';
+import 'CupertinoTabBar.dart';
 
 class CupertinoMenu3 extends StatefulWidget {
   @override
@@ -104,6 +106,13 @@ class _State extends State<CupertinoMenu3> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCupertinoSlider())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoTabBar"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoTabBar())
                 ),
             ),
 
