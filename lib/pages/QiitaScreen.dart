@@ -69,12 +69,12 @@ class _State extends State<Qiita> {
         _savedPage++;
         _load(_savedPage, _perPage);
         print('_load');
-        print(positionRate);
+        //print(positionRate);  // debug
       }
     } else {
       _isLoading = false;
       //print(_maxScrollExtend);
-      print(positionRate);
+      //print(positionRate);  // debug
     }
   }
  
@@ -192,7 +192,7 @@ class _State extends State<Qiita> {
                     ),
                   ),
                   Text(
-                    issue.createdAt! + ' ' + issue.id!,
+                    fromAtNow(issue.createdAt!) + ' - ' + issue.id!,
                     style: _buildSubTitleTextStyle(),
                   ),
                   Row(
@@ -275,3 +275,21 @@ TextStyle _buildSubTitleTextStyle() {
   );
 }
 
+
+String fromAtNow(String sentDateJst) {
+
+  DateTime date = DateTime.parse(sentDateJst);
+
+  final Duration difference = DateTime.now().difference(date);
+  final int sec = difference.inSeconds;
+
+  if (sec >= 60 * 60 * 24) {
+    return '${difference.inDays.toString()} days ago';
+  } else if (sec >= 60 * 60) {
+    return '${difference.inHours.toString()} hours ago';
+  } else if (sec >= 60) {
+    return '${difference.inMinutes.toString()} minutes ago';
+  } else {
+    return '$sec seconds ago';
+  }
+}
