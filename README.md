@@ -26,3 +26,7 @@ $ flutter pub get
 
 【Flutter】DateTimeを「何日前」「何分前」など現在時刻との差分で表示させる方法
 https://qiita.com/seiboy/items/7b632103088c5ed65082
+
+YOASOBIくらいの最小構成でスマホアプリを開発する with Flutter
+url_launcher
+https://zenn.dev/hagakun_dev/articles/23bba803cbec13
