@@ -19,6 +19,10 @@ samples, guidance on mobile development, and a full API reference.
 flutter_my_app README
 https://github.com/hiroyuki12/flutter_my_app/blob/master/README.md
 
+追加パッケージのインストール
+プロジェクトのフォルダ内で
+$ flutter pub add url_launcher 
+$ flutter pub get
 
 【Flutter】DateTimeを「何日前」「何分前」など現在時刻との差分で表示させる方法
 https://qiita.com/seiboy/items/7b632103088c5ed65082
