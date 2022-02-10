@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'pages/QiitaScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'pages/Cupertino/CupertinoMenu.dart';
@@ -45,39 +46,24 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             CupertinoButton(
               child: Text("flutter.dev(外部サイト)"),
-              onPressed: () =>
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      MyCupertinoWebView(
-                        url: "https://flutter.dev",
-                        title: "flutter.dev"),
-                  ),
-                ),
+              onPressed: () async {
+                await _launchURL(
+                  'https://flutter.dev');
+              }
             ),
             CupertinoButton(
               child: Text("環境構築(外部サイト)"),
-              onPressed: () =>
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      MyCupertinoWebView(
-                        url: "https://mbp.hatenablog.com/entry/2019/12/29/000000?_ga=2.97341151.1500483094.1644030611-1356087000.1644030611",
-                        title: "Flutter 入門"),
-                  ),
-                ),
+              onPressed: () async {
+                await _launchURL(
+                  'https://mbp.hatenablog.com/entry/2019/12/29/000000?_ga=2.97341151.1500483094.1644030611-1356087000.1644030611');
+              }
             ),
             CupertinoButton(
               child: Text("flutter_my_app2(外部サイト)"),
-              onPressed: () =>
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      MyCupertinoWebView(
-                        url: "https://mbp.hatenablog.com/entry/2022/02/05/143159",
-                        title: "flutter_my_app2"),
-                  ),
-                ),
+              onPressed: () async {
+                await _launchURL(
+                  'https://mbp.hatenablog.com/entry/2022/02/05/143159');
+              }
             ),
             CupertinoButton(
               child: Text("Qiita(API)"),
@@ -88,39 +74,24 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             CupertinoButton(
               child: Text("Zenn(Flutter) 外部サイト"),
-              onPressed: () =>
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      MyCupertinoWebView(
-                        url: "https://zenn.dev/topics/flutter?order=latest",
-                        title: "Zenn Flutterの記事一覧"),
-                  ),
-                ),
+              onPressed: () async {
+                await _launchURL(
+                  'https://zenn.dev/topics/flutter?order=latest');
+              }
             ),
             CupertinoButton(
               child: Text("Qiita(Flutter) 外部サイト"),
-              onPressed: () =>
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      MyCupertinoWebView(
-                        url: "https://qiita.com/tags/flutter",
-                        title: "Qiita Flutterの記事一覧"),
-                  ),
-                ),
+              onPressed: () async {
+                await _launchURL(
+                  'https://qiita.com/tags/flutter');
+              }
             ),
             CupertinoButton(
               child: Text("はてなブログタグ(外部サイト)"),
-              onPressed: () =>
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                      MyCupertinoWebView(
-                        url: "https://d.hatena.ne.jp/keyword/flutter",
-                        title: "はてなブログタグ Flutter"),
-                  ),
-                ),
+              onPressed: () async {
+                await _launchURL(
+                  'https://d.hatena.ne.jp/keyword/flutter');
+              }
             ),
             CupertinoButton(
               child: Text("Cupertino Menu ->"),
@@ -134,4 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+
+Future<void> _launchURL(String url) async {
+  await launch(url);
 }
