@@ -19,6 +19,9 @@ samples, guidance on mobile development, and a full API reference.
 flutter_my_app README
 https://github.com/hiroyuki12/flutter_my_app/blob/master/README.md
 
+M1 Macでpod installする場合は、
+$ arch -x86_64 pod install 
+
 追加パッケージのインストール
 プロジェクトのフォルダ内で
 $ flutter pub add url_launcher 
