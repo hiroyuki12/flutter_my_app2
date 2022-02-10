@@ -45,13 +45,6 @@ class _State extends State<CupertinoMenu3> {
                 ),
             ),
             CupertinoButton(
-              child: Text("Push CupertinoTabBar"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoTabBar())
-                ),
-            ),
-            CupertinoButton(
               child: Text("Push CupertinoTextField"),
               onPressed: () => 
                 Navigator.push(
