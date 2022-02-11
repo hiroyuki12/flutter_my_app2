@@ -36,3 +36,9 @@ https://zenn.dev/hagakun_dev/articles/23bba803cbec13
 
 Flutter基礎 ~Column・Row~
 https://zenn.dev/engineerhikaru/books/ecf839ce7d0591bb203b/viewer/864c38d2fcbb27c0befb
+
+Flutter Widgets Icon class
+https://api.flutter.dev/flutter/widgets/Icon-class.html
+
+material.io/resources/icons
+https://fonts.google.com/icons?selected=Material+Icons
