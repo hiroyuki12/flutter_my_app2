@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'pages/QiitaScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'pages/Cupertino/CupertinoMenu.dart';
+import 'pages/Basics/BasicsMenu.dart';
 import 'pages/CupertinoWebView.dart';
 
 void main() {
@@ -98,6 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoMenu())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Basics Menu ->"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => BasicsMenu())
                 ),
             ),
           ],
