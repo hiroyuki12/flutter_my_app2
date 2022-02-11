@@ -5,6 +5,7 @@ import 'BasicsColumn.dart';
 import 'BasicsRow.dart';
 import 'BasicsContainer.dart';
 import 'BasicsText.dart';
+import 'BasicsIcon.dart';
 
 class BasicsMenu extends StatefulWidget {
   @override
@@ -55,6 +56,13 @@ class _State extends State<BasicsMenu> {
               onPressed: () =>
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => BasicsText())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push BasicsIcon"),
+              onPressed: () =>
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => BasicsIcon())
                 ),
             ),
 
