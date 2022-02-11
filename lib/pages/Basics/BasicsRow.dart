@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import '../DarkModeColor.dart';
 
-class BasicsColumn extends StatefulWidget {
+class BasicsRow extends StatefulWidget {
   @override
     State<StatefulWidget> createState() {
     return _State();
   }
 }
 
-class _State extends State<BasicsColumn> {
+class _State extends State<BasicsRow> {
   @override
   Widget build(BuildContext context) {
     isDarkMode = true;  // switch darkMode
@@ -16,10 +16,10 @@ class _State extends State<BasicsColumn> {
       backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
         backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
-        middle: Text("Basics Column", style: _buildTextStyle()),
+        middle: Text("Basics Row", style: _buildTextStyle()),
         //trailing: Text("Edit", style: myTextStyle),
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text("Hello World!", style: _buildTextStyle(),),
