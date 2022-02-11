@@ -4,6 +4,7 @@ import '../DarkModeColor.dart';
 import 'BasicsColumn.dart';
 import 'BasicsRow.dart';
 import 'BasicsContainer.dart';
+import 'BasicsText.dart';
 
 class BasicsMenu extends StatefulWidget {
   @override
@@ -47,6 +48,13 @@ class _State extends State<BasicsMenu> {
               onPressed: () =>
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => BasicsContainer())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push BasicsText"),
+              onPressed: () =>
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => BasicsText())
                 ),
             ),
 
