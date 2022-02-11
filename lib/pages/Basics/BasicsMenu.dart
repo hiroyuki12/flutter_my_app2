@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../DarkModeColor.dart';
 import 'BasicsColumn.dart';
 import 'BasicsRow.dart';
+import 'BasicsContainer.dart';
 
 class BasicsMenu extends StatefulWidget {
   @override
@@ -39,6 +40,13 @@ class _State extends State<BasicsMenu> {
               onPressed: () =>
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => BasicsRow())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push BasicsContainer"),
+              onPressed: () =>
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => BasicsContainer())
                 ),
             ),
 
