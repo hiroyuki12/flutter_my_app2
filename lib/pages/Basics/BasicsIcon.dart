@@ -30,6 +30,12 @@ class _State extends State<BasicsIcon> {
       semanticLabel: 'Text to announce in accessibility modes',
     ),
     Icon(
+      Icons.favorite_border,
+      color: Colors.pink,
+      size: 24.0,
+      semanticLabel: 'Text to announce in accessibility modes',
+    ),
+    Icon(
       Icons.audiotrack,
       color: Colors.green,
       size: 30.0,
