@@ -20,10 +20,10 @@ class _State extends State<CupertinoFirebase> {
   @override
   Widget build(BuildContext context) {
     //ref.child("Name2").set("Hello3");
-    FirebaseFirestore.instance
+    /*FirebaseFirestore.instance
                     .collection('users') // コレクションID
                     .doc('id_abc') // ドキュメントID
-                    .set({'name': '鈴木', 'age': 40}); // データ
+                    .set({'name': '鈴木', 'age': 40}); // データ*/
 
     isDarkMode = true;  // switch darkMode
     return CupertinoPageScaffold(
@@ -38,11 +38,11 @@ class _State extends State<CupertinoFirebase> {
               //color: CupertinoColors.activeBlue,
               //borderRadius: new BorderRadius.circular(30.0),
               onPressed: () async {
-                    /*final UserCredential result =                
+                    final UserCredential result =
                         await auth.createUserWithEmailAndPassword(     
-                      email: "a@a",                              
-                      password: "bb",                            
-                    );*/      
+                      email: "a@a.co.jp",
+                      password: "bbbbbb",
+                    );
               },
               child: Text('Cupertino Firebase', style: _buildTextStyle()),
             ),
