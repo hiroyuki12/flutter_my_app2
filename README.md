@@ -45,3 +45,8 @@ https://api.flutter.dev/flutter/widgets/Icon-class.html
 
 material.io/resources/icons
 https://fonts.google.com/icons?selected=Material+Icons
+
+
+Flutter 標準で使えるアイコンのギャラリー
+Cupertino Icons
+https://qiita.com/hosikiti/items/6e460ad325ce59f026d0
