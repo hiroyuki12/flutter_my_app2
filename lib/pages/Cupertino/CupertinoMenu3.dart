@@ -13,6 +13,7 @@ import 'CupertinoSearchTextField.dart';
 import 'CupertinoSlider.dart';
 import 'CupertinoTabBar.dart';
 import 'CupertinoYoasobi.dart';
+import 'CupertinoIcons.dart';
 
 class CupertinoMenu3 extends StatefulWidget {
   @override
@@ -113,6 +114,13 @@ class _State extends State<CupertinoMenu3> {
               onPressed: () => 
                 Navigator.push(
                   context, MaterialPageRoute(builder: (context) => CupertinoYoasobi())
+                ),
+            ),
+            CupertinoButton(
+              child: Text("Push CupertinoIcons"),
+              onPressed: () => 
+                Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => MyCupertinoIcons())
                 ),
             ),
 
