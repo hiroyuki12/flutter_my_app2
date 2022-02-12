@@ -30,6 +30,12 @@ class _State extends State<MyCupertinoIcons> {
       semanticLabel: 'Text to announce in accessibility modes',
     ),
     Icon(
+      CupertinoIcons.heart,
+      color: Colors.pink,
+      size: 24.0,
+      semanticLabel: 'Text to announce in accessibility modes',
+    ),
+    Icon(
       CupertinoIcons.bell_fill,
       color: Colors.green,
       size: 30.0,
