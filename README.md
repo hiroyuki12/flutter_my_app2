@@ -50,3 +50,6 @@ https://fonts.google.com/icons?selected=Material+Icons
 Flutter 標準で使えるアイコンのギャラリー
 Cupertino Icons
 https://qiita.com/hosikiti/items/6e460ad325ce59f026d0
+
+cloud_firestoreのpod installでエラーが出るので、Podfileをplatform :ios, '10.6'にする
+https://qiita.com/tomono_22/items/1d71031d3832bb5a2cca
