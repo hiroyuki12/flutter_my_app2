@@ -7,7 +7,7 @@ import 'pages/Cupertino/CupertinoMenu.dart';
 import 'pages/Cupertino/CupertinoSub.dart';
 import 'pages/Basics/BasicsMenu.dart';
 import 'pages/CupertinoWebView.dart';
-import 'pages/CupertinoFirebase.dart';
+import 'pages/Firebase/CupertinoFirebase.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

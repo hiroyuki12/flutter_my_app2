@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'DarkModeColor.dart';
+import '../DarkModeColor.dart';
 import 'package:flutter/foundation.dart';
 
 class CupertinoFirebase extends StatefulWidget {
