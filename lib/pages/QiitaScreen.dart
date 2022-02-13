@@ -119,97 +119,101 @@ class _State extends State<Qiita> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        backgroundColor: CupertinoColors.black,
-        middle: Text(
-            // "CupertinoQiita Page " +
-            _tag +
-                " Page " +
-                _savedPage.toString() +
-                '/' +
-                _perPage.toString() +
-                'posts/' +
-                (((_savedPage - 1) * _perPage) + 1).toString() +
-                '~',
-            style: _buildTextStyle()),
-        trailing: CupertinoButton(
-          onPressed: () {
-            showCupertinoModalPopup(
-                context: context,
-                builder: (BuildContext context) {
-                  return _buildCupertinoActionSheet();
-                });
-          },
-          child: Text('menu'),
+        navigationBar: CupertinoNavigationBar(
+          backgroundColor: CupertinoColors.black,
+          middle: Text(
+              // "CupertinoQiita Page " +
+              _tag +
+                  " Page " +
+                  _savedPage.toString() +
+                  '/' +
+                  _perPage.toString() +
+                  'posts/' +
+                  (((_savedPage - 1) * _perPage) + 1).toString() +
+                  '~',
+              style: _buildTextStyle()),
+          trailing: CupertinoButton(
+            onPressed: () {
+              showCupertinoModalPopup(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return _buildCupertinoActionSheet();
+                  });
+            },
+            child: Text('menu'),
+          ),
         ),
-      ),
-      child: (_items == null || _items.length == 0)
-          ? Text(
-              "Loading....",
-              style: _buildTextStyle(),
-            )
-          : ListView.builder(
-              controller: _scrollController,
-              itemBuilder: (BuildContext context, int index) {
-                //if (index >= _items.length) {
-                //  return null;
-                //}
+        child: (_items == null || _items.length == 0)
+            ? Text(
+                "Loading....",
+                style: _buildTextStyle(),
+              )
+            : Column(children: [
+                Text('top text', style: _buildTextStyle()),
+                Flexible(
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    itemBuilder: (BuildContext context, int index) {
+                      //if (index >= _items.length) {
+                      //  return null;
+                      //}
 
-                final issue = _items[index];
-                return Row(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      // padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                      // child: ClipOval(
-                      //   child: Image.network(issue.profileImageUrl,
-                      //     width: 50,),
-                      // ),
-                      child: Image.network(
-                        issue.profileImageUrl!,
-                        width: 70,
-                      ),
-                    ),
-                    Expanded(
-                        child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Material(
-                          //for InkWell
-                          type: MaterialType.transparency,
-                          child: InkWell(
-                            onTap: () async {
-                              await _launchURL(issue.url!);
-                            },
-                            child: Text(
-                              issue.title!,
-                              style: _buildTextStyle(),
+                      final issue = _items[index];
+                      return Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            // padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                            // child: ClipOval(
+                            //   child: Image.network(issue.profileImageUrl,
+                            //     width: 50,),
+                            // ),
+                            child: Image.network(
+                              issue.profileImageUrl!,
+                              width: 70,
                             ),
                           ),
-                        ),
-                        Text(
-                          fromAtNow(issue.createdAt!) + ' - ' + issue.id!,
-                          style: _buildSubTitleTextStyle(),
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              issue.likesCount!.toString() + ' likes',
-                              style: _buildSubTitleTextStyle(),
-                            ),
-                          ],
-                        ),
-                        // Text(
-                        //   // issue.tags.length == 1 ? issue.tags[0][0] : "",
-                        //   issue.tags.name,
-                        // ),
-                      ],
-                    )),
-                  ],
-                );
-              },
-            ),
-    );
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Material(
+                                //for InkWell
+                                type: MaterialType.transparency,
+                                child: InkWell(
+                                  onTap: () async {
+                                    await _launchURL(issue.url!);
+                                  },
+                                  child: Text(
+                                    issue.title!,
+                                    style: _buildTextStyle(),
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                fromAtNow(issue.createdAt!) + ' - ' + issue.id!,
+                                style: _buildSubTitleTextStyle(),
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    issue.likesCount!.toString() + ' likes',
+                                    style: _buildSubTitleTextStyle(),
+                                  ),
+                                ],
+                              ),
+                              // Text(
+                              //   // issue.tags.length == 1 ? issue.tags[0][0] : "",
+                              //   issue.tags.name,
+                              // ),
+                            ],
+                          )),
+                        ],
+                      );
+                    },
+                  ),
+                )
+              ]));
   }
 
   Widget _buildCupertinoActionSheet() {
