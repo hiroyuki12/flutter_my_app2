@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'pages/QiitaScreen.dart';
 import 'pages/Cupertino/CupertinoMenu.dart';
+import 'pages/Cupertino/CupertinoSub.dart';
 import 'pages/Basics/BasicsMenu.dart';
 import 'pages/CupertinoWebView.dart';
 import 'pages/CupertinoFirebase.dart';
@@ -90,6 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () async {
                   await _launchURL('https://d.hatena.ne.jp/keyword/flutter');
                 }),
+            CupertinoButton(
+              child: Text("sub ->"),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoSub())),
+            ),
             CupertinoButton(
               child: Text("Cupertino Menu ->"),
               onPressed: () => Navigator.push(context,
