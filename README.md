@@ -63,3 +63,6 @@ https://qiita.com/KosukeSaigusa/items/860b5a2a6a02331d07cb
 Firebase Authentication概要　flutter-study.dev
 https://www.flutter-study.dev/firebase/authentication
 
+flutter format -l 80 --fix lib
+https://qiita.com/Umigishi-Aoi/items/faffd042723497826406
+
