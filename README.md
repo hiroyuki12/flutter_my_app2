@@ -71,3 +71,6 @@ https://www.choge-blog.com/programming/fluttercupertinotextfield-password-hide/
 
 Flutter での標準Widgetと使用方法
 https://origon.co.jp/flutter-での標準widgetと使用方法/
+
+【Flutter】Columnの中でListViewを使う時にエラーが出る
+https://qiita.com/tabe_unity/items/4c0fa9b167f4d0a7d7c2
