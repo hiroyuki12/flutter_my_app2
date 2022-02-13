@@ -34,6 +34,10 @@ YOASOBIくらいの最小構成でスマホアプリを開発する with Flutter
 url_launcher
 https://zenn.dev/hagakun_dev/articles/23bba803cbec13
 
+Flutterでテキストリンクのやり方
+CupertinoButtonのonPressedに追加
+https://qiita.com/nkmrh/items/c8000fb25e1e86c25c1d
+
 Flutter基礎 ~Column・Row~
 https://zenn.dev/engineerhikaru/books/ecf839ce7d0591bb203b/viewer/864c38d2fcbb27c0befb
 
