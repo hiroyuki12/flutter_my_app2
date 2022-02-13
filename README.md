@@ -54,7 +54,7 @@ https://qiita.com/hosikiti/items/6e460ad325ce59f026d0
 cloud_firestoreのpod installでエラーが出るので、Podfileをplatform :ios, '10.6'にする
 https://qiita.com/tomono_22/items/1d71031d3832bb5a2cca
 
-【Flutter】Cloud Firestoreでデータの保存、取得
+【Flutter】Cloud Firestoreでschoolsデータの保存、取得
 https://qiita.com/kiiimiis/items/1fe1588f030c2ef4c79c
 
 Firebase 公式動画から『Firestore の DB 設計の基礎』を学ぶ
