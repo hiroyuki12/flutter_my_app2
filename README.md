@@ -56,3 +56,6 @@ https://qiita.com/tomono_22/items/1d71031d3832bb5a2cca
 
 【Flutter】Cloud Firestoreでデータの保存、取得
 https://qiita.com/kiiimiis/items/1fe1588f030c2ef4c79c
+
+Firebase 公式動画から『Firestore の DB 設計の基礎』を学ぶ
+https://qiita.com/KosukeSaigusa/items/860b5a2a6a02331d07cb
