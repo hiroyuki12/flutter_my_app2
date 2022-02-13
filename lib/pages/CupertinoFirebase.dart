@@ -46,13 +46,21 @@ class _State extends State<CupertinoFirebase> {
                       password: "bbbbbb",
                     );*/
 
-                    final schoolRepository = SchoolRepository();
+                    /*final schoolRepository = SchoolRepository();
                     final insertSchool = new School(
                       name:"サンプル学校",
                       updatedAt: DateTime.now(),
                       createdAt: DateTime.now()
                     );
-                    final documentId = await schoolRepository.insert(insertSchool);
+                    final documentId = await schoolRepository.insert(insertSchool);*/
+
+                    final schoolRepository = SchoolRepository();
+                    final schools = await schoolRepository.getSchools();
+                    for (var school in schools) {
+                      print("ドキュメントID:" + school.id.toString());
+                      print("学校名:" + school.data().name);
+                      print("作成日時:" + school.data().createdAt.toString());
+                    }
               },
               child: Text('Cupertino Firebase', style: _buildTextStyle()),
             ),
@@ -78,6 +86,15 @@ class SchoolRepository {
   Future<String> insert(School school) async {
     final data = await schoolsManager.add(school.toJson());
     return data.id;
+  }
+
+  /// 学校情報を取得する
+  Future<List<QueryDocumentSnapshot<School>>> getSchools() async {
+    final schoolRef = schoolsManager.withConverter<School>(
+        fromFirestore: (snapshot, _) => School.fromJson(snapshot.data()!),
+        toFirestore: (school, _) => school.toJson());
+    final schoolSnapshot = await schoolRef.get();
+    return schoolSnapshot.docs;
   }
 }
 
@@ -108,4 +125,14 @@ class School {
       'deletedAt': deletedTimestamp
     };
   }
+
+  //Firebaseからデータを取得する際の変換処理
+  School.fromJson(Map<String, Object?> json)
+      : this(
+            name: json['name']! as String,
+            createdAt: (json['createdAt']! as Timestamp).toDate() as DateTime,
+            updatedAt: (json['updatedAt']! as Timestamp).toDate() as DateTime,
+            deletedAt:
+                (json['deletedAt'] as Timestamp?)?.toDate() as DateTime?);
+
 }
