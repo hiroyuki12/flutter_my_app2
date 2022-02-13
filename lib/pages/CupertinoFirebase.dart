@@ -8,13 +8,12 @@ import 'package:flutter/foundation.dart';
 
 class CupertinoFirebase extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() {
+  State<StatefulWidget> createState() {
     return _State();
   }
 }
 
 class _State extends State<CupertinoFirebase> {
-
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   //DatabaseReference ref = FirebaseDatabase.instance.reference();
@@ -27,61 +26,73 @@ class _State extends State<CupertinoFirebase> {
                     .doc('id_abc') // ドキュメントID
                     .set({'name': '鈴木', 'age': 40}); // データ*/
 
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
     return CupertinoPageScaffold(
-      backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+      backgroundColor:
+          isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
         middle: Text("Cupertino Firebase", style: _buildTextStyle()),
         //trailing: Text("Edit", style: myTextStyle),
       ),
-      child: 
-            CupertinoButton(
-              //color: CupertinoColors.activeBlue,
-              //borderRadius: new BorderRadius.circular(30.0),
-              onPressed: () async {
-                    /*final UserCredential result =
-                        await auth.createUserWithEmailAndPassword(     
-                      email: "a@a.co.jp",
-                      password: "bbbbbb",
-                    );*/
+      child: CupertinoButton(
+        //color: CupertinoColors.activeBlue,
+        //borderRadius: new BorderRadius.circular(30.0),
+        onPressed: () async {
+          /*final UserCredential result =
+              await auth.createUserWithEmailAndPassword(
+            email: "a@a.co.jp",
+            password: "bbbbbb",
+          );*/
 
-                    /*final schoolRepository = SchoolRepository();
-                    final insertSchool = new School(
-                      name:"サンプル学校",
-                      updatedAt: DateTime.now(),
-                      createdAt: DateTime.now()
-                    );
-                    final documentId = await schoolRepository.insert(insertSchool);*/
+          try {
+            final UserCredential result = await auth.signInWithEmailAndPassword(
+              email: "a@a.co.jp",
+              password: "bbbbbb",
+            );
+            // ログインに成功した場合
+            final User user = result.user!;
+            print("ログインOK:${user.email}");
+          } catch (e) {
+            print("ログインNG：${e.toString()}");
+          }
 
-                    final schoolRepository = SchoolRepository();
-                    final schools = await schoolRepository.getSchools();
-                    for (var school in schools) {
-                      print("ドキュメントID:" + school.id.toString());
-                      print("学校名:" + school.data().name);
-                      print("作成日時:" + school.data().createdAt.toString());
-                    }
-              },
-              child: Text('Cupertino Firebase', style: _buildTextStyle()),
-            ),
-      
+          /*final schoolRepository = SchoolRepository();
+          final insertSchool = School(
+              name: "サンプル学校",
+              updatedAt: DateTime.now(),
+              createdAt: DateTime.now());
+          final documentId = await schoolRepository.insert(insertSchool);
+
+          final schoolRepository = SchoolRepository();
+          final schools = await schoolRepository.getSchools();
+          for (var school in schools) {
+            print("ドキュメントID:" + school.id.toString());
+            print("学校名:" + school.data().name);
+            print("作成日時:" + school.data().createdAt.toString());
+          }*/
+        },
+        child: Text('Cupertino Firebase', style: _buildTextStyle()),
+      ),
     );
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
-  fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+  return myTextStyle = TextStyle(
+    fontWeight: FontWeight.w100,
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
 }
 
 /// 学校を扱うリポジトリ
 class SchoolRepository {
   final schoolsManager = FirebaseFirestore.instance.collection('schools');
+
   /// 学校情報を保存する
   Future<String> insert(School school) async {
     final data = await schoolsManager.add(school.toJson());
@@ -120,8 +131,10 @@ class School {
     }
     return {
       'name': name,
-      'createdAt': Timestamp.fromDate(createdAt), //DartのDateTimeからFirebaseのTimestampへ変換
-      'updatedAt': Timestamp.fromDate(updatedAt), //DartのDateTimeからFirebaseのTimestampへ変換
+      'createdAt':
+          Timestamp.fromDate(createdAt), //DartのDateTimeからFirebaseのTimestampへ変換
+      'updatedAt':
+          Timestamp.fromDate(updatedAt), //DartのDateTimeからFirebaseのTimestampへ変換
       'deletedAt': deletedTimestamp
     };
   }
@@ -134,5 +147,4 @@ class School {
             updatedAt: (json['updatedAt']! as Timestamp).toDate() as DateTime,
             deletedAt:
                 (json['deletedAt'] as Timestamp?)?.toDate() as DateTime?);
-
 }
