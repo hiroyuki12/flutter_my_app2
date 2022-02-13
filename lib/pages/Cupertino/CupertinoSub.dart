@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
-import 'CupertinoButton.dart';
+import '../Firebase/CupertinoFirebaseSignup.dart';
 
 class CupertinoSub extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _State extends State<CupertinoSub> {
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => MyCupertinoButton())),
+                      builder: (context) => CupertinoFirebaseSignup())),
             ),
 
           ],
