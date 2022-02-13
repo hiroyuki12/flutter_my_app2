@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'CupertinoWebView.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Qiita extends StatefulWidget {
   @override
@@ -149,7 +150,16 @@ class _State extends State<Qiita> {
                 style: _buildTextStyle(),
               )
             : Column(children: [
-                Text('top text', style: _buildTextStyle()),
+                CupertinoButton(
+                  onPressed: () async {
+                    if (await canLaunch(
+                        "https://mbp.hatenablog.com/entry/2022/02/05/143159")) {
+                      await launch(
+                          "https://mbp.hatenablog.com/entry/2022/02/05/143159");
+                    }
+                  },
+                  child: Text('flutter_my_app2', style: _buildTextStyle()),
+                ),
                 Flexible(
                   child: ListView.builder(
                     controller: _scrollController,
