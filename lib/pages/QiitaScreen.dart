@@ -13,22 +13,22 @@ class Qiita extends StatefulWidget {
 }
 
 class Item {
-   Item({
-     this.title,
-     this.profileImageUrl,
-     this.id,
-     this.likesCount,
-     this.createdAt,
-     this.url,
-   });
+  Item({
+    this.title,
+    this.profileImageUrl,
+    this.id,
+    this.likesCount,
+    this.createdAt,
+    this.url,
+  });
 
-   final String? title;
-   final String? profileImageUrl;
-   final String? id;
-   final int? likesCount;
-   final String? createdAt;
-   final String? url;
- }
+  final String? title;
+  final String? profileImageUrl;
+  final String? id;
+  final int? likesCount;
+  final String? createdAt;
+  final String? url;
+}
 
 class _State extends State<Qiita> {
   ScrollController _scrollController = ScrollController();
@@ -48,7 +48,7 @@ class _State extends State<Qiita> {
   final _tagSwift = 'swift';
   int _savedPage = 1;
   int _perPage = 20;
-  double _pageMaxScrollExtend = 877.0;  // Simulator iPhone 13, _perPage 20の時
+  double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
   double _maxScrollExtend = 877.0;
 
   @override
@@ -62,7 +62,8 @@ class _State extends State<Qiita> {
     // スクロールを検知したときに呼ばれる
     double positionRate =
         //_scrollController.offset / _scrollController.position.maxScrollExtent;
-        (_scrollController.offset - (_pageMaxScrollExtend * (_savedPage - 1))) / _maxScrollExtend;
+        (_scrollController.offset - (_pageMaxScrollExtend * (_savedPage - 1))) /
+            _maxScrollExtend;
 
     if (positionRate > 0.99) {
       if (_isLoading == false) {
@@ -78,14 +79,13 @@ class _State extends State<Qiita> {
       //print(positionRate);  // debug
     }
   }
- 
 
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
   }
- 
+
   // This widget is the root of your application.
   Future<void> _load(int _page, int _perPage) async {
     //var res;
@@ -93,11 +93,11 @@ class _State extends State<Qiita> {
     //final res = await http.get(Uri.parse('https://qiita.com/api/v2/items'));
     //final res = await http.get(Uri.parse('https://qiita.com/api/v2/tags/Flutter/items?page=1&per_page=20'));
     final res = await http.get(Uri.parse('https://qiita.com/api/v2/tags/' +
-          _tag +
-          '/items?page=' +
-          _page.toString() +
-          '&per_page=' +
-          _perPage.toString()));
+        _tag +
+        '/items?page=' +
+        _page.toString() +
+        '&per_page=' +
+        _perPage.toString()));
     final data = json.decode(res.body);
     setState(() {
       final items = data as List;
@@ -119,7 +119,6 @@ class _State extends State<Qiita> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-
       navigationBar: CupertinoNavigationBar(
         backgroundColor: CupertinoColors.black,
         middle: Text(
@@ -132,7 +131,7 @@ class _State extends State<Qiita> {
                 'posts/' +
                 (((_savedPage - 1) * _perPage) + 1).toString() +
                 '~',
-          style: _buildTextStyle()),
+            style: _buildTextStyle()),
         trailing: CupertinoButton(
           onPressed: () {
             showCupertinoModalPopup(
@@ -144,72 +143,72 @@ class _State extends State<Qiita> {
           child: Text('menu'),
         ),
       ),
+      child: (_items == null || _items.length == 0)
+          ? Text(
+              "Loading....",
+              style: _buildTextStyle(),
+            )
+          : ListView.builder(
+              controller: _scrollController,
+              itemBuilder: (BuildContext context, int index) {
+                //if (index >= _items.length) {
+                //  return null;
+                //}
 
-      child: (_items == null || _items.length == 0)?
-          Text("Loading....",style: _buildTextStyle(),) :
-        ListView.builder(
-        controller: _scrollController,
-        itemBuilder: (BuildContext context, int index) {
-          //if (index >= _items.length) {
-          //  return null;
-          //}
-
-          final issue = _items[index];
-          return Row(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(3.0),
-                // padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                // child: ClipOval(
-                //   child: Image.network(issue.profileImageUrl,
-                //     width: 50,),
-                // ),
-                child: Image.network(
-                  issue.profileImageUrl!,
-                  width: 70,
-                ),
-              ),
-              Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Material(
-                    //for InkWell
-                    type: MaterialType.transparency,
-                    child: InkWell(
-                      onTap: () async {
-                        await _launchURL(
-                          issue.url!);
-                      },
-                      child: Text(
-                        issue.title!,
-                        style: _buildTextStyle(),
+                final issue = _items[index];
+                return Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      // padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                      // child: ClipOval(
+                      //   child: Image.network(issue.profileImageUrl,
+                      //     width: 50,),
+                      // ),
+                      child: Image.network(
+                        issue.profileImageUrl!,
+                        width: 70,
                       ),
                     ),
-                  ),
-                  Text(
-                    fromAtNow(issue.createdAt!) + ' - ' + issue.id!,
-                    style: _buildSubTitleTextStyle(),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Text(
-                        issue.likesCount!.toString() + ' likes',
-                        style: _buildSubTitleTextStyle(),
-                      ),
-                    ],
-                  ),
-                  // Text(
-                  //   // issue.tags.length == 1 ? issue.tags[0][0] : "",
-                  //   issue.tags.name,
-                  // ),
-                ],
-              )),
-            ],
-          );
-        },
-      ),
-
+                    Expanded(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Material(
+                          //for InkWell
+                          type: MaterialType.transparency,
+                          child: InkWell(
+                            onTap: () async {
+                              await _launchURL(issue.url!);
+                            },
+                            child: Text(
+                              issue.title!,
+                              style: _buildTextStyle(),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          fromAtNow(issue.createdAt!) + ' - ' + issue.id!,
+                          style: _buildSubTitleTextStyle(),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              issue.likesCount!.toString() + ' likes',
+                              style: _buildSubTitleTextStyle(),
+                            ),
+                          ],
+                        ),
+                        // Text(
+                        //   // issue.tags.length == 1 ? issue.tags[0][0] : "",
+                        //   issue.tags.name,
+                        // ),
+                      ],
+                    )),
+                  ],
+                );
+              },
+            ),
     );
   }
 
@@ -228,7 +227,6 @@ class _State extends State<Qiita> {
             Navigator.pop(context, 'Clear');
           },
         ),
-
         CupertinoActionSheetAction(
           child: const Text('Next Page'),
           onPressed: () {
@@ -237,7 +235,6 @@ class _State extends State<Qiita> {
             Navigator.pop(context, 'Next Page');
           },
         ),
-
       ],
       cancelButton: CupertinoActionSheetAction(
         child: const Text('Cancel'),
@@ -248,12 +245,11 @@ class _State extends State<Qiita> {
       ),
     );
   }
-
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
+  return myTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,
@@ -261,9 +257,9 @@ TextStyle _buildTextStyle() {
   );
 }
 
-var subTitleTextStyle = new TextStyle();
+var subTitleTextStyle = TextStyle();
 TextStyle _buildSubTitleTextStyle() {
-  return subTitleTextStyle = new TextStyle(
+  return subTitleTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 13,
@@ -271,9 +267,7 @@ TextStyle _buildSubTitleTextStyle() {
   );
 }
 
-
 String fromAtNow(String sentDateJst) {
-
   DateTime date = DateTime.parse(sentDateJst);
 
   final Duration difference = DateTime.now().difference(date);

@@ -5,7 +5,7 @@ import 'DarkModeColor.dart';
 
 class CupertinoSnackBar extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() {
+  State<StatefulWidget> createState() {
     return _State();
   }
 }
@@ -13,14 +13,17 @@ class CupertinoSnackBar extends StatefulWidget {
 class _State extends State<CupertinoSnackBar> {
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
     return MaterialApp(
       theme: isDarkMode ? ThemeData.dark() : ThemeData.light(),
       home: CupertinoPageScaffold(
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
         navigationBar: CupertinoNavigationBar(
           middle: Text("Cupertino SnackBar", style: _buildTextStyle()),
-          backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+          backgroundColor: isDarkMode
+              ? darkModeBackColor
+              : backColor, //white , darkMode=black
         ),
         child: SnackBarPage(),
       ),
@@ -31,15 +34,19 @@ class _State extends State<CupertinoSnackBar> {
 class SnackBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SnackBarBody(),);
+    return Scaffold(
+      body: SnackBarBody(),
+    );
   }
 }
 
 class SnackBarBody extends StatefulWidget {
-  SnackBarBody({Key? key,}):super(key: key);
+  SnackBarBody({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _SnackBarBodyState createState() => new _SnackBarBodyState();
+  _SnackBarBodyState createState() => _SnackBarBodyState();
 }
 
 class _SnackBarBodyState extends State<SnackBarBody> {
@@ -52,7 +59,8 @@ class _SnackBarBodyState extends State<SnackBarBody> {
             onPressed: () {
               final snackBar = SnackBar(
                 content: Text('Yay! A SnackBar!'),
-                action: SnackBarAction(label: 'Undo',
+                action: SnackBarAction(
+                  label: 'Undo',
                   onPressed: () {},
                 ),
               );
@@ -66,7 +74,7 @@ class _SnackBarBodyState extends State<SnackBarBody> {
               //Navigator.pop(context);
               //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CupertinoMenu3()));
             },
-            child: Text('close', style: _buttonTextStyleNoBackground), 
+            child: Text('close', style: _buttonTextStyleNoBackground),
           ),
         ],
       ),
@@ -74,21 +82,21 @@ class _SnackBarBodyState extends State<SnackBarBody> {
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
-  fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  // color: CupertinoColors.white
-  color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+  return myTextStyle = TextStyle(
+    fontWeight: FontWeight.w100,
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    // color: CupertinoColors.white
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
 }
 
-TextStyle  _buttonTextStyleNoBackground = new TextStyle(
+TextStyle _buttonTextStyleNoBackground = TextStyle(
   fontWeight: FontWeight.w300,
   decoration: TextDecoration.none,
   fontSize: 16,
   // color: CupertinoColors.white
-  color: CupertinoColors.activeBlue,  //black , darkMode=white
+  color: CupertinoColors.activeBlue, //black , darkMode=white
 );

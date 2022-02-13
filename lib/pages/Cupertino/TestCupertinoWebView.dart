@@ -37,38 +37,34 @@ class _State extends State<TestCupertinoWebView> {
       ),
       child: Center(
         child: WebView(
-          initialUrl: 'https://flutter.dev',
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: _controller.complete,
-
-          onPageStarted: (String url) {
-            setState(() {
-              _isLoading = true;
-            });
-          },
-
-          onPageFinished: (String url) async {
-            setState(() {
-              _isLoading = false;
-            });
-            final controller = await _controller.future;
-            final title = await controller.getTitle();
-            setState(() {
-              if (title != null) {
-                _title = title;
-              }
-            });
-          }
-
-        ),  //WebView
-      ),  //Center
-    );  //CupertinoPageScaffold
-  }  //build
+            initialUrl: 'https://flutter.dev',
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: _controller.complete,
+            onPageStarted: (String url) {
+              setState(() {
+                _isLoading = true;
+              });
+            },
+            onPageFinished: (String url) async {
+              setState(() {
+                _isLoading = false;
+              });
+              final controller = await _controller.future;
+              final title = await controller.getTitle();
+              setState(() {
+                if (title != null) {
+                  _title = title;
+                }
+              });
+            }), //WebView
+      ), //Center
+    ); //CupertinoPageScaffold
+  } //build
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
+  return myTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,

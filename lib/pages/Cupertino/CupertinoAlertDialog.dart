@@ -88,9 +88,9 @@ Widget _buildCupertinoAlertDiaglog(BuildContext context) {
   //   );
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
+  return myTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,

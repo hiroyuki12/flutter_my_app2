@@ -4,7 +4,7 @@ import 'DarkModeColor.dart';
 
 class CupertinoSignInButton extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() {
+  State<StatefulWidget> createState() {
     return _State();
   }
 }
@@ -12,11 +12,13 @@ class CupertinoSignInButton extends StatefulWidget {
 class _State extends State<CupertinoSignInButton> {
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
     return CupertinoPageScaffold(
-      backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+      backgroundColor:
+          isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
         middle: Text("Cupertino Signin Button", style: _buildTextStyle()),
         //trailing: Text("Edit", style: myTextStyle),
       ),
@@ -39,34 +41,46 @@ class _State extends State<CupertinoSignInButton> {
               Buttons.Google,
               onPressed: () {},
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             SignInButton(
               Buttons.GitHub,
               onPressed: () {},
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             SignInButton(
               Buttons.Twitter,
               text: "Use Twitter",
               onPressed: () {},
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             SignInButton(
               Buttons.Apple,
               onPressed: () {},
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             SignInButton(
               Buttons.Facebook,
               onPressed: () {},
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             SignInButton(
               Buttons.Pinterest,
               text: "Sign up with Pinterest",
               onPressed: () {},
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             SignInButton(
               Buttons.Email,
               text: "Get going with Email",
@@ -79,12 +93,12 @@ class _State extends State<CupertinoSignInButton> {
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
-  fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+  return myTextStyle = TextStyle(
+    fontWeight: FontWeight.w100,
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
 }

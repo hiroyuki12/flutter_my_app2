@@ -11,27 +11,36 @@ class MyCupertinoSlider extends StatefulWidget {
 }
 
 class _State extends State<MyCupertinoSlider> {
-  double rating=40.0;
+  double rating = 40.0;
 
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
 
     return CupertinoPageScaffold(
-      backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+      backgroundColor:
+          isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
         middle: Text("CupertinoSwitch", style: _buildTextStyle()),
       ),
       child: Row(
         children: [
-          Text("${rating.round()}", style: _buildTextStyle(),),
+          Text(
+            "${rating.round()}",
+            style: _buildTextStyle(),
+          ),
           CupertinoSlider(
             value: rating,
-            onChanged: (newRating) { setState(() { rating = newRating; }); },
-            min:0,
-            max:100,
-            divisions:50,
+            onChanged: (newRating) {
+              setState(() {
+                rating = newRating;
+              });
+            },
+            min: 0,
+            max: 100,
+            divisions: 50,
           ),
         ],
       ),
@@ -39,12 +48,12 @@ class _State extends State<MyCupertinoSlider> {
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
-  fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+  return myTextStyle = TextStyle(
+    fontWeight: FontWeight.w100,
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
 }

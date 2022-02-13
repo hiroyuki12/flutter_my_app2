@@ -6,7 +6,7 @@ import 'DarkModeColor.dart';
 class CupertinoTwitterHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
     _buildFont();
     var _homeListItems = List<HomeListItem>.generate(
       12,
@@ -14,18 +14,22 @@ class CupertinoTwitterHome extends StatelessWidget {
     );
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
         // leading: Icon(Icons.account_circle, size: 40.0, color: const Color(0xff26a7de)),
         // leading: Icon(Icons.account_circle, size: 40.0, color: const Color(0xff00aaee)),
         // leading: Icon(Icons.account_circle, size: 40.0, color: const Color(0xff888888)),
-        middle: Text('Home', style: titleTextStyle,),
-        trailing: Icon(Icons.star_border, size:25.0, color: Colors.blue),
+        middle: Text(
+          'Home',
+          style: titleTextStyle,
+        ),
+        trailing: Icon(Icons.star_border, size: 25.0, color: Colors.blue),
       ),
       child: ListView.builder(
-        itemCount: _homeListItems.length,
-        itemBuilder: (context, index) {
-          return _homeListItems[index];
-        }),
+          itemCount: _homeListItems.length,
+          itemBuilder: (context, index) {
+            return _homeListItems[index];
+          }),
     );
   }
 }
@@ -36,15 +40,18 @@ class HomeListItem extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(  //外枠
-        color: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+      decoration: BoxDecoration(
+        //外枠
+        color:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
         border: Border.all(
           width: 0.1,
           color: Colors.grey,
         ),
       ),
       child: Container(
-        color: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        color:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
         height: content_height,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +90,8 @@ class HomeListItem extends StatelessWidget {
     return Row(
       children: <Widget>[
         Text(
-          'mnopqrst and 4 others liked', style: myLikedTextStyle,
+          'mnopqrst and 4 others liked',
+          style: myLikedTextStyle,
         ),
       ],
     );
@@ -100,12 +108,14 @@ class HomeListItem extends StatelessWidget {
         ),
         Container(
           child: Text(
-            '@abcdefghijkl ･ 1h', style: myIdTextStyle,
+            '@abcdefghijkl ･ 1h',
+            style: myIdTextStyle,
           ),
         ),
         Expanded(child: Container()),
         Icon(
-          Icons.expand_more, color: Colors.grey,
+          Icons.expand_more,
+          color: Colors.grey,
         ),
       ],
     );
@@ -117,15 +127,15 @@ class HomeListItem extends StatelessWidget {
       child: Wrap(
         children: <Widget>[
           Text(
-            '【世界】てすとてすとてすとてすとてすとてすとてすとてすとてすとてすと', style: myTextStyle,
+            '【世界】てすとてすとてすとてすとてすとてすとてすとてすとてすとてすと',
+            style: myTextStyle,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildImage()
-  {
+  Widget _buildImage() {
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: ClipRRect(
@@ -197,8 +207,6 @@ class HomeListItem extends StatelessWidget {
   }
 }
 
-
-
 const button_size = 17.0;
 const title_font_size = 18.0;
 const username_font_size = 15.0;
@@ -208,50 +216,46 @@ const id_font_size = 16.0;
 const number_font_size = 14.0;
 const content_height = 291.0;
 
-TextStyle titleTextStyle = new TextStyle();
-TextStyle myTextStyle = new TextStyle();
-TextStyle myBoldTextStyle = new TextStyle();
-void _buildFont()
-{
-  myBoldTextStyle = new TextStyle(
+TextStyle titleTextStyle = TextStyle();
+TextStyle myTextStyle = TextStyle();
+TextStyle myBoldTextStyle = TextStyle();
+void _buildFont() {
+  myBoldTextStyle = TextStyle(
     fontWeight: FontWeight.w700,
     decoration: TextDecoration.none,
     fontSize: username_font_size,
-    color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
-  
-  myTextStyle = new TextStyle(
+
+  myTextStyle = TextStyle(
     fontWeight: FontWeight.w300,
     decoration: TextDecoration.none,
     fontSize: text_font_size,
-    color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
 
-  titleTextStyle = new TextStyle(
+  titleTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: title_font_size,
-    color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
-    );
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
+  );
 }
 
-final myIdTextStyle = new TextStyle(
-  fontWeight: FontWeight.w400,
-  decoration: TextDecoration.none,
-  fontSize: id_font_size,
-  color: CupertinoColors.systemGrey
-);
+final myIdTextStyle = TextStyle(
+    fontWeight: FontWeight.w400,
+    decoration: TextDecoration.none,
+    fontSize: id_font_size,
+    color: CupertinoColors.systemGrey);
 
-final myLikedTextStyle = new TextStyle(
-  fontWeight: FontWeight.w400,
-  decoration: TextDecoration.none,
-  fontSize: liked_font_size,
-  color: CupertinoColors.systemGrey
-);
+final myLikedTextStyle = TextStyle(
+    fontWeight: FontWeight.w400,
+    decoration: TextDecoration.none,
+    fontSize: liked_font_size,
+    color: CupertinoColors.systemGrey);
 
-final myNumberTextStyle = new TextStyle(
-  fontWeight: FontWeight.w400,
-  decoration: TextDecoration.none,
-  fontSize: number_font_size,
-  color: CupertinoColors.systemGrey
-);
+final myNumberTextStyle = TextStyle(
+    fontWeight: FontWeight.w400,
+    decoration: TextDecoration.none,
+    fontSize: number_font_size,
+    color: CupertinoColors.systemGrey);

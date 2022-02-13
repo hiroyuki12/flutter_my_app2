@@ -6,7 +6,7 @@ import 'DarkModeColor.dart';
 
 class CupertinoTwitter extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() {
+  State<StatefulWidget> createState() {
     return _State();
   }
 }
@@ -22,25 +22,25 @@ class _State extends State<CupertinoTwitter> {
   ];
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
     return CupertinoTabScaffold(
-      backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+      backgroundColor:
+          isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       tabBar: _buildTabBar(),
       tabBuilder: (BuildContext context, int index) {
-        return  CupertinoPageScaffold(
-          child: _pages[index]
-        );
+        return CupertinoPageScaffold(child: _pages[index]);
       },
     );
   }
 
   CupertinoTabBar _buildTabBar() {
     return CupertinoTabBar(
-      backgroundColor: isDarkMode ? darkModeBackColor :  backColor,  //darkMode = black
+      backgroundColor:
+          isDarkMode ? darkModeBackColor : backColor, //darkMode = black
       activeColor: Colors.blue,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: new Icon(Icons.home, size: 28.0),
+          icon: Icon(Icons.home, size: 28.0),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search, size: 27.0),
@@ -56,9 +56,9 @@ class _State extends State<CupertinoTwitter> {
   }
 }
 
-  var myTextStyle = new TextStyle(
-    fontWeight: FontWeight.w100,
-    decoration: TextDecoration.none,
-    fontSize: 16,
-    //color: CupertinoColors.white);
-  );
+var myTextStyle = TextStyle(
+  fontWeight: FontWeight.w100,
+  decoration: TextDecoration.none,
+  fontSize: 16,
+  //color: CupertinoColors.white);
+);

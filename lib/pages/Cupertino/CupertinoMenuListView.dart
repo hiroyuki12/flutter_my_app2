@@ -140,7 +140,7 @@ class _State extends State<CupertinoMenuListView> {
   }
 }
 
-var _myTextStyle = new TextStyle(
+var _myTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,

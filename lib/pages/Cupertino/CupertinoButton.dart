@@ -4,7 +4,7 @@ import 'DarkModeColor.dart';
 
 class MyCupertinoButton extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() {
+  State<StatefulWidget> createState() {
     return _State();
   }
 }
@@ -12,12 +12,14 @@ class MyCupertinoButton extends StatefulWidget {
 class _State extends State<MyCupertinoButton> {
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
     return CupertinoPageScaffold(
-      backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+      backgroundColor:
+          isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
         middle: Text("CupertinoButton", style: _buildTextStyle()),
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       ),
       child: Center(
         child: Column(
@@ -25,22 +27,24 @@ class _State extends State<MyCupertinoButton> {
             CupertinoButton(
               //color: CupertinoColors.activeBlue,
               //borderRadius: new BorderRadius.circular(30.0),
-              onPressed: () {
-              },
+              onPressed: () {},
               child: Text('No color', style: _buttonTextStyleNoBackground),
             ),
-            SizedBox(height: 32,),
+            SizedBox(
+              height: 32,
+            ),
             CupertinoButton(
-              color: CupertinoColors.activeBlue,  //backgroundColor
-              borderRadius: new BorderRadius.circular(30.0),
-              onPressed: () {
-              },
+              color: CupertinoColors.activeBlue, //backgroundColor
+              borderRadius: BorderRadius.circular(30.0),
+              onPressed: () {},
               child: Text('With color', style: _buttonTextStyleWithBagckground),
             ),
-            SizedBox(height: 32,),
+            SizedBox(
+              height: 32,
+            ),
             CupertinoButton(
-              color: CupertinoColors.activeBlue,  //backgroundColor
-              borderRadius: new BorderRadius.circular(30.0),
+              color: CupertinoColors.activeBlue, //backgroundColor
+              borderRadius: BorderRadius.circular(30.0),
               disabledColor: CupertinoColors.systemGrey,
               onPressed: null,
               child: Text('Disabled', style: _buttonTextStyleWithBagckground),
@@ -52,29 +56,27 @@ class _State extends State<MyCupertinoButton> {
   }
 }
 
-
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
-  fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  // color: CupertinoColors.white
-  color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+  return myTextStyle = TextStyle(
+    fontWeight: FontWeight.w100,
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    // color: CupertinoColors.white
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
 }
 
-var _buttonTextStyleWithBagckground = new TextStyle(
-  //fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  color: CupertinoColors.white
-);
+var _buttonTextStyleWithBagckground = TextStyle(
+    //fontWeight: FontWeight.w100,
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    color: CupertinoColors.white);
 
-TextStyle  _buttonTextStyleNoBackground = new TextStyle(
+TextStyle _buttonTextStyleNoBackground = TextStyle(
   fontWeight: FontWeight.w300,
   decoration: TextDecoration.none,
   fontSize: 16,
   // color: CupertinoColors.white
-  color: CupertinoColors.activeBlue,  //black , darkMode=white
+  color: CupertinoColors.activeBlue, //black , darkMode=white
 );

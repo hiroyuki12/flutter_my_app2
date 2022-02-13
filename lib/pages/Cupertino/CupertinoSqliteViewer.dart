@@ -6,7 +6,7 @@ import 'DarkModeColor.dart';
 
 class CupertinoSqliteViewer extends StatefulWidget {
   @override
-    State<StatefulWidget> createState() {
+  State<StatefulWidget> createState() {
     return _State();
   }
 }
@@ -14,19 +14,21 @@ class CupertinoSqliteViewer extends StatefulWidget {
 class _State extends State<CupertinoSqliteViewer> {
   @override
   Widget build(BuildContext context) {
-    isDarkMode = true;  // switch darkMode
+    isDarkMode = true; // switch darkMode
     return CupertinoPageScaffold(
-      backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+      backgroundColor:
+          isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       navigationBar: CupertinoNavigationBar(
         middle: Text("CupertinoSqliteViewer", style: _buildTextStyle()),
-        backgroundColor: isDarkMode ? darkModeBackColor : backColor,  //white , darkMode=black
+        backgroundColor:
+            isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       ),
       child: Center(
         child: Column(
           children: <Widget>[
             CupertinoButton(
               onPressed: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => DatabaseList())),
+                  context, MaterialPageRoute(builder: (_) => DatabaseList())),
               child: Text('SqliteViewer', style: _buttonTextStyleNoBackground),
             ),
           ],
@@ -36,21 +38,21 @@ class _State extends State<CupertinoSqliteViewer> {
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
-  fontWeight: FontWeight.w100,
-  decoration: TextDecoration.none,
-  fontSize: 16,
-  // color: CupertinoColors.white
-  color: isDarkMode ? darkModeForeColor : foreColor,  //black , darkMode=white
+  return myTextStyle = TextStyle(
+    fontWeight: FontWeight.w100,
+    decoration: TextDecoration.none,
+    fontSize: 16,
+    // color: CupertinoColors.white
+    color: isDarkMode ? darkModeForeColor : foreColor, //black , darkMode=white
   );
 }
 
-TextStyle  _buttonTextStyleNoBackground = new TextStyle(
+TextStyle _buttonTextStyleNoBackground = TextStyle(
   fontWeight: FontWeight.w300,
   decoration: TextDecoration.none,
   fontSize: 16,
   // color: CupertinoColors.white
-  color: CupertinoColors.activeBlue,  //black , darkMode=white
+  color: CupertinoColors.activeBlue, //black , darkMode=white
 );

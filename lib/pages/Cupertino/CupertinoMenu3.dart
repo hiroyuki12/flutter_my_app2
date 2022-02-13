@@ -40,90 +40,78 @@ class _State extends State<CupertinoMenu3> {
           children: <Widget>[
             CupertinoButton(
               child: Text("Push CupertinoSwitch"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoSwitch())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyCupertinoSwitch())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoTextField"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoTextField())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyCupertinoTextField())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoTimerPicker"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoTimerPicker())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyCupertinoTimerPicker())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoTwitter"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoTwitter())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoTwitter())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoTwitterHome"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoTwitterHome())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CupertinoTwitterHome())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoWebView"),
-              onPressed: () =>
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoWebView(
-                    url: "http://www.google.com", title: "CupertinoWebView"))
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyCupertinoWebView(
+                          url: "http://www.google.com",
+                          title: "CupertinoWebView"))),
             ),
             CupertinoButton(
               child: Text("Push CupertinoNavigationBar"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoNavigationBar())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyCupertinoNavigationBar())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoSearchTextField"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoSearchTextField())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyCupertinoSearchTextField())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoSlider"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoSlider())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyCupertinoSlider())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoTabBar"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoTabBar())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyCupertinoTabBar())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoYoasobi"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoYoasobi())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoYoasobi())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoIcons"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoIcons())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyCupertinoIcons())),
             ),
-
           ],
         ),
       ),
@@ -131,9 +119,9 @@ class _State extends State<CupertinoMenu3> {
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
+  return myTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,

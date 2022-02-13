@@ -41,96 +41,85 @@ class _State extends State<CupertinoMenu2> {
           children: <Widget>[
             CupertinoButton(
               child: Text("Push CupertinoMenu3 ->"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoMenu3())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoMenu3())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoHome"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoHome())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoHome())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoListView"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoListView())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyCupertinoListView())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoLocalAuthentication"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoLocalAuthentication())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CupertinoLocalAuthentication())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoLocalFile"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoLocalFile())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CupertinoLocalFile())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoMenuListView"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoMenuListView())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CupertinoMenuListView())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoPicker"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoPicker())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyCupertinoPicker())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoPlatform"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoPlatform())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoPlatform())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoSegmentedControl"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyCupertinoSegmentedControl())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyCupertinoSegmentedControl())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoSharedPreferences"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoSharedPreferences())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CupertinoSharedPreferences())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoSignInButton"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoSignInButton())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CupertinoSignInButton())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoSnackBar"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoSnackBar())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoSnackBar())),
             ),
             CupertinoButton(
               child: Text("Push CupertinoSqliteViewer"),
-              onPressed: () => 
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CupertinoSqliteViewer())
-                ),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CupertinoSqliteViewer())),
             ),
-
           ],
         ),
       ),
@@ -138,9 +127,9 @@ class _State extends State<CupertinoMenu2> {
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
+  return myTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,

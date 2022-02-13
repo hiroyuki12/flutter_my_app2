@@ -32,40 +32,29 @@ class _State extends State<BasicsMenu> {
           children: <Widget>[
             CupertinoButton(
               child: Text("Push BasicsColumn"),
-              onPressed: () =>
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => BasicsColumn())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BasicsColumn())),
             ),
             CupertinoButton(
               child: Text("Push BasicsRow"),
-              onPressed: () =>
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => BasicsRow())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BasicsRow())),
             ),
             CupertinoButton(
               child: Text("Push BasicsContainer"),
-              onPressed: () =>
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => BasicsContainer())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BasicsContainer())),
             ),
             CupertinoButton(
               child: Text("Push BasicsText"),
-              onPressed: () =>
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => BasicsText())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BasicsText())),
             ),
             CupertinoButton(
               child: Text("Push BasicsIcon"),
-              onPressed: () =>
-                Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => BasicsIcon())
-                ),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BasicsIcon())),
             ),
-
           ],
         ),
       ),
@@ -73,9 +62,9 @@ class _State extends State<BasicsMenu> {
   }
 }
 
-var myTextStyle = new TextStyle();
+var myTextStyle = TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = new TextStyle(
+  return myTextStyle = TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,
