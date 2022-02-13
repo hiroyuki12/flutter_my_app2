@@ -59,3 +59,7 @@ https://qiita.com/kiiimiis/items/1fe1588f030c2ef4c79c
 
 Firebase 公式動画から『Firestore の DB 設計の基礎』を学ぶ
 https://qiita.com/KosukeSaigusa/items/860b5a2a6a02331d07cb
+
+Firebase Authentication概要　flutter-study.dev
+https://www.flutter-study.dev/firebase/authentication
+
