@@ -81,3 +81,6 @@ https://qiita.com/tabe_unity/items/4c0fa9b167f4d0a7d7c2
 
 スプラトゥーン2のプレイヤー向けに便利な機能を搭載した動画プレイヤーアプリ
 https://www.docswell.com/s/tfandkusu/NK6475-FlutterWebHtmlElement#p3
+
+【Flutter Web × Firebase Auth】GitHubログインを実装してみた
+https://qiita.com/DaigoWakabayashi/items/ce5cf9a7404d9be63d8e
