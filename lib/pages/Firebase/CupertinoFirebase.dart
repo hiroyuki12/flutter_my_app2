@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_firestore/firebase_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import '../DarkModeColor.dart';
@@ -91,24 +92,24 @@ TextStyle _buildTextStyle() {
 
 /// 学校を扱うリポジトリ
 class SchoolRepository {
-  final schoolsManager = FirebaseFirestore.instance.collection('schools');
+  //final schoolsManager = FirebaseFirestore.instance.collection('schools');
 
   /// 学校情報を保存する
-  Future<String> insert(School school) async {
+  /*Future<String> insert(School school) async {
     final data = await schoolsManager.add(school.toJson());
     return data.id;
-  }
+  }*/
 
   /// 学校情報を取得する
-  Future<List<QueryDocumentSnapshot<School>>> getSchools() async {
+  /*Future<List<QueryDocumentSnapshot<School>>> getSchools() async {
     final schoolRef = schoolsManager.withConverter<School>(
         fromFirestore: (snapshot, _) => School.fromJson(snapshot.data()!),
         toFirestore: (school, _) => school.toJson());
     final schoolSnapshot = await schoolRef.get();
     return schoolSnapshot.docs;
-  }
+  }*/
 }
-
+/*
 @immutable
 class School {
   final String name;
@@ -147,4 +148,4 @@ class School {
             updatedAt: (json['updatedAt']! as Timestamp).toDate() as DateTime,
             deletedAt:
                 (json['deletedAt'] as Timestamp?)?.toDate() as DateTime?);
-}
+}*/
