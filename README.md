@@ -92,3 +92,5 @@ https://qiita.com/DaigoWakabayashi/items/ce5cf9a7404d9be63d8e
       B-->D;
       C-->D;
 ```
+
+https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/
