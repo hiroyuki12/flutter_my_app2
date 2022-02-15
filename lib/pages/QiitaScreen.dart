@@ -246,6 +246,11 @@ class _State extends State<Qiita> {
             _tag = _tagSwift;
             _savedPage = 1;
             _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
             _load(_savedPage, _perPage);
             Navigator.pop(context, 'tag swift');
           },
@@ -256,6 +261,11 @@ class _State extends State<Qiita> {
             _tag = _tagReact;
             _savedPage = 1;
             _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
             _load(_savedPage, _perPage);
             Navigator.pop(context, 'tag react');
           },
@@ -266,6 +276,11 @@ class _State extends State<Qiita> {
             _tag = _tagFlutter;
             _savedPage = 1;
             _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
             _load(_savedPage, _perPage);
             Navigator.pop(context, 'tag flutter');
           },
@@ -275,6 +290,7 @@ class _State extends State<Qiita> {
           onPressed: () async {
             if (await canLaunch(
                 "https://mbp.hatenablog.com/entry/2022/02/05/143159")) {
+              Navigator.pop(context, 'flutter_my_app2');
               await launch(
                   "https://mbp.hatenablog.com/entry/2022/02/05/143159");
             }
