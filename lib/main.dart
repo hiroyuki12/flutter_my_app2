@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'pages/QiitaScreen.dart';
 import 'pages/Cupertino/CupertinoMenu.dart';
 import 'pages/Cupertino/CupertinoSub.dart';
 import 'pages/Basics/BasicsMenu.dart';
 import 'pages/CupertinoWebView.dart';
-import 'pages/Firebase/CupertinoFirebase.dart';
+//import 'pages/Firebase/CupertinoFirebase.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  //WidgetsFlutterBinding.ensureInitialized();
+  //Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -70,11 +70,11 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Qiita())),
             ),
-            CupertinoButton(
+            /*CupertinoButton(
               child: Text("Cupertino Firebase"),
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CupertinoFirebase())),
-            ),
+            ),*/
             CupertinoButton(
                 child: Text("Zenn(Flutter) 外部サイト"),
                 onPressed: () async {

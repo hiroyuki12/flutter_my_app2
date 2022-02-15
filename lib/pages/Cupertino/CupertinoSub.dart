@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
-import '../Firebase/CupertinoFirebaseSignup.dart';
+//import '../Firebase/CupertinoFirebaseSignup.dart';
 
 class CupertinoSub extends StatefulWidget {
   @override
@@ -26,13 +26,13 @@ class _State extends State<CupertinoSub> {
       child: Center(
         child: Column(
           children: <Widget>[
-            CupertinoButton(
+            /*CupertinoButton(
               child: Text("(Need API Key) Firebase(signup)"),
               onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => CupertinoFirebaseSignup())),
-            ),
+            ),*/
 
           ],
         ),
