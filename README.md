@@ -84,3 +84,11 @@ https://www.docswell.com/s/tfandkusu/NK6475-FlutterWebHtmlElement#p3
 
 【Flutter Web × Firebase Auth】GitHubログインを実装してみた
 https://qiita.com/DaigoWakabayashi/items/ce5cf9a7404d9be63d8e
+
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
