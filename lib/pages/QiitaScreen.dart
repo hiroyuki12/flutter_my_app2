@@ -46,7 +46,8 @@ class _State extends State<Qiita> {
 
   final _tagsTrends = 'trends';
   final _tagFlutter = 'flutter';
-  final _tagSwift = 'swift';
+  final _tagReact   = 'react';
+  final _tagSwift   = 'swift';
   int _savedPage = 1;
   int _perPage = 20;
   double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
@@ -150,16 +151,6 @@ class _State extends State<Qiita> {
                 style: _buildTextStyle(),
               )
             : Column(children: [
-                CupertinoButton(
-                  onPressed: () async {
-                    if (await canLaunch(
-                        "https://mbp.hatenablog.com/entry/2022/02/05/143159")) {
-                      await launch(
-                          "https://mbp.hatenablog.com/entry/2022/02/05/143159");
-                    }
-                  },
-                  child: Text('flutter_my_app2', style: _buildTextStyle()),
-                ),
                 Flexible(
                   child: ListView.builder(
                     controller: _scrollController,
@@ -230,7 +221,7 @@ class _State extends State<Qiita> {
     return CupertinoActionSheet(
       //title: const Text('選択した項目が画面に表示されます'),
       actions: <Widget>[
-        CupertinoActionSheetAction(
+        /*CupertinoActionSheetAction(
           child: const Text('Clear'),
           onPressed: () {
             // _savedPage++;
@@ -247,6 +238,46 @@ class _State extends State<Qiita> {
             _savedPage++;
             _load(_savedPage, _perPage);
             Navigator.pop(context, 'Next Page');
+          },
+        ),*/
+        CupertinoActionSheetAction(
+          child: const Text('tag swift'),
+          onPressed: () {
+            _tag = _tagSwift;
+            _savedPage = 1;
+            _items.clear();
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'tag swift');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('tag react'),
+          onPressed: () {
+            _tag = _tagReact;
+            _savedPage = 1;
+            _items.clear();
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'tag react');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('tag flutter'),
+          onPressed: () {
+            _tag = _tagFlutter;
+            _savedPage = 1;
+            _items.clear();
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'tag flutter');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('flutter_my_app2'),
+          onPressed: () async {
+            if (await canLaunch(
+                "https://mbp.hatenablog.com/entry/2022/02/05/143159")) {
+              await launch(
+                  "https://mbp.hatenablog.com/entry/2022/02/05/143159");
+            }
           },
         ),
       ],
