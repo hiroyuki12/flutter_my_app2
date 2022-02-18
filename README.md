@@ -97,3 +97,6 @@ https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/
 
 [Flutter]ListViewを最初の要素まで自動スクロールさせるには？
 https://www.choge-blog.com/programming/flutterlistview-first-idnexx-scroll/
+
+FlutterでTwitterAPIを使う
+https://www.flutter-study.dev/recipe/twitter
