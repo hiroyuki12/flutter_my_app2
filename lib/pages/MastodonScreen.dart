@@ -20,6 +20,7 @@ class Item {
     this.createdAt,
     this.favourites_count,
     this.id,
+    this.avatar,
   });
 
   final String? content;
@@ -27,6 +28,7 @@ class Item {
   final String? createdAt;
   final int? favourites_count;
   final String? id;
+  final String? avatar;
 }
 
 class _State extends State<Mastodon> {
@@ -43,6 +45,8 @@ class _State extends State<Mastodon> {
   var _tag = 'drikin';
   final _tagDrikin= 'drikin';
   final _tagMazzo = 'mazzo';
+  final _tagGuru = 'guru';
+
   final _tagsTrends = 'trends';
   final _tagFlutter = 'flutter';
   final _tagReact   = 'react';
@@ -106,8 +110,14 @@ class _State extends State<Mastodon> {
       id = "1";
       _avatar = _avatarDrikin;
     }
-    final res = await http.get(Uri.parse('https://mstdn.guru/api/v1/accounts/' + id + '/statuses?max_id=' +
-        _maxId));
+    var url = 'https://mstdn.guru/api/v1/accounts/' + id + '/statuses?max_id=' + _maxId;
+
+    if(_tag == _tagGuru)
+    {
+       url = 'https://mstdn.guru/api/v1/timelines/public?local=true&max_id=' + _maxId;
+    }
+
+    final res = await http.get(Uri.parse(url));
     final data = json.decode(res.body);
     setState(() {
       final items = data as List;
@@ -136,7 +146,10 @@ class _State extends State<Mastodon> {
           favourites_count: issue['favourites_count'],
           createdAt: issue['created_at'] as String,
           uri: issue['uri'] as String,
+          avatar: issue['account']['avatar'] as String,
         ));
+        //print('aa');
+        //print(issue['account']['avatar']); 
       });
       _maxId = _items[_items.length-1].id as String;
     });
@@ -194,9 +207,9 @@ class _State extends State<Mastodon> {
                             // ),
                             child: Image.network(
                               //issue.profileImageUrl!,
-                              //issue.account!.avatar!,
+                              issue.avatar!,
                               //'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png',
-                              _avatar,
+                              //_avatar,
                               width: 70,
                             ),
                           ),
@@ -296,6 +309,22 @@ class _State extends State<Mastodon> {
             );
             _load(_savedPage, _perPage);
             Navigator.pop(context, 'mazzo');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('mstdn.guru'),
+          onPressed: () {
+            _tag = _tagGuru;
+            _savedPage = 1;
+            _maxId = "999999999999999999";
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'mstdn.guru');
           },
         ),
         CupertinoActionSheetAction(
