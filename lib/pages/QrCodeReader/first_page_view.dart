@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_qr_code_scanner/qr_code_scanner_view.dart';
-
 import 'confirm_view.dart';
 import 'qr_code_scanner_view.dart';
+import '../DarkModeColor.dart';
 
 class Const {
   static const routeFirstPage = '/home';
@@ -28,19 +28,20 @@ class FirstPageView extends StatelessWidget {
 class _FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text('QR code scanner'),
+    isDarkMode = true;
+    return CupertinoPageScaffold(
+      backgroundColor: isDarkMode ? darkModeBackColor : backColor,
+      navigationBar: CupertinoNavigationBar(
+        middle: Text("QR code scanner", style: _buildTextStyle()),
+        backgroundColor: isDarkMode ? darkModeBackColor : backColor,
       ),
-      body: _buildPage(context),
+      child: _buildPage(context),
     );
   }
 
   Widget _buildPage(BuildContext context) {
     return Center(
-      child: ElevatedButton(
-        //onPressed: () async {
+      child: CupertinoButton(
         onPressed: () {
           //if (await Permission.camera.request().isGranted) {
             Navigator.pushNamed(context, Const.routeQRCodeScanner);
@@ -48,8 +49,25 @@ class _FirstPage extends StatelessWidget {
           //  await showRequestPermissionDialog(context);
           //}
         },
-        child: const Text('Launch QR code scanner'),
+        child: Text('Launch QR code scanner', style: _buttonTextStyleNoBackground),
       ),
     );
   }
 }
+
+var myTextStyle = new TextStyle();
+TextStyle _buildTextStyle() {
+  return myTextStyle = new TextStyle(
+  fontWeight: FontWeight.w100,
+  decoration: TextDecoration.none,
+  fontSize: 16,
+  color: isDarkMode ? darkModeForeColor : foreColor,
+  );
+}
+
+TextStyle _buttonTextStyleNoBackground = new TextStyle(
+  fontWeight: FontWeight.w300,
+  decoration: TextDecoration.none,
+  fontSize: 16,
+  color: CupertinoColors.activeBlue,
+);
