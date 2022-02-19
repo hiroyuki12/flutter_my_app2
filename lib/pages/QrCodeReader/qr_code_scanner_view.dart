@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'first_page_view.dart';
+import '../DarkModeColor.dart';
 
 @immutable
 class ConfirmViewArguments {
@@ -41,12 +42,15 @@ class _QRCodeScannerViewState extends State<QRCodeScannerView> {
 
   @override
   Widget build(BuildContext context) {
+    isDarkMode = true;
     // _checkPermissionState();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Scan the QR code'),
+    return CupertinoPageScaffold(
+      backgroundColor: isDarkMode ? darkModeBackColor : backColor,
+      navigationBar: CupertinoNavigationBar(
+        middle: Text("Scan the QR code", style: _buildTextStyle()),
+        backgroundColor: isDarkMode ? darkModeBackColor : backColor,
       ),
-      body: Column(
+      child: Column(
         children: <Widget>[
           Expanded(
             flex: 4,
@@ -60,14 +64,14 @@ class _QRCodeScannerViewState extends State<QRCodeScannerView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  const Text('Scan a code'),
+                  Text('Scan a code', style: _buildTextStyle()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Container(
                         margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
+                        child: CupertinoButton(
                           onPressed: () async {
                             await _qrController?.toggleFlash();
                             setState(() {});
@@ -75,13 +79,13 @@ class _QRCodeScannerViewState extends State<QRCodeScannerView> {
                           child: FutureBuilder(
                             future: _qrController?.getFlashStatus(),
                             builder: (context, snapshot) =>
-                                Text('Flash: ${snapshot.data}'),
+                                Text('Flash: ${snapshot.data}',style: _buttonTextStyleNoBackground),
                           ),
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
+                        child: CupertinoButton(
                           onPressed: () async {
                             await _qrController?.flipCamera();
                             setState(() {});
@@ -91,8 +95,10 @@ class _QRCodeScannerViewState extends State<QRCodeScannerView> {
                             builder: (context, snapshot) => snapshot.data !=
                                     null
                                 ? Text(
-                                    'Camera facing ${describeEnum(snapshot.data!)}')
-                                : const Text('loading'),
+                                    'Camera facing ${describeEnum(snapshot.data!)}',
+                                    style: _buttonTextStyleNoBackground)
+                                : Text('loading',
+                                             style: _buttonTextStyleNoBackground),
                           ),
                         ),
                       ),
@@ -104,25 +110,25 @@ class _QRCodeScannerViewState extends State<QRCodeScannerView> {
                     children: <Widget>[
                       Container(
                         margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
+                        child: CupertinoButton(
                           onPressed: () async {
                             await _qrController?.pauseCamera();
                           },
-                          child: const Text(
+                          child: Text(
                             'pause',
-                            style: TextStyle(fontSize: 20),
+                            style: _buttonTextStyleNoBackground,
                           ),
                         ),
                       ),
                       Container(
                         margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
+                        child: CupertinoButton(
                           onPressed: () async {
                             await _qrController?.resumeCamera();
                           },
-                          child: const Text(
+                          child: Text(
                             'resume',
-                            style: TextStyle(fontSize: 20),
+                            style: _buttonTextStyleNoBackground,
                           ),
                         ),
                       ),
@@ -189,33 +195,21 @@ class _QRCodeScannerViewState extends State<QRCodeScannerView> {
       );
     }
   }
-  // Future<void> _checkPermissionState() async {
-  //   if (!await Permission.camera.status.isGranted) {
-  //     _showRequestPermissionDialog(context);
-  //   }
-  // }
-  //
-  // Future<void> _showRequestPermissionDialog(BuildContext context) async {
-  //   await showDialog<void>(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: const Text('カメラを許可してください'),
-  //         content: const Text('QRコードを読み取る為にカメラを利用します'),
-  //         actions: <Widget>[
-  //           ElevatedButton(
-  //             onPressed: () => Navigator.pop(context),
-  //             child: const Text('キャンセル'),
-  //           ),
-  //           ElevatedButton(
-  //             onPressed: () async {
-  //               openAppSettings();
-  //             },
-  //             child: const Text('設定'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }
+
+var myTextStyle = new TextStyle();
+TextStyle _buildTextStyle() {
+  return myTextStyle = new TextStyle(
+  fontWeight: FontWeight.w100,
+  decoration: TextDecoration.none,
+  fontSize: 16,
+  color: isDarkMode ? darkModeForeColor : foreColor,
+  );
+}
+
+TextStyle  _buttonTextStyleNoBackground = new TextStyle(
+  fontWeight: FontWeight.w300,
+  decoration: TextDecoration.none,
+  fontSize: 16,
+  color: CupertinoColors.activeBlue,
+);
