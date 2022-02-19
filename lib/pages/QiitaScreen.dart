@@ -48,6 +48,7 @@ class _State extends State<Qiita> {
   final _tagFlutter = 'flutter';
   final _tagReact   = 'react';
   final _tagSwift   = 'swift';
+  final _tagVim     = 'vim';
   int _savedPage = 1;
   int _perPage = 20;
   double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
@@ -240,6 +241,21 @@ class _State extends State<Qiita> {
             Navigator.pop(context, 'Next Page');
           },
         ),*/
+        CupertinoActionSheetAction(
+          child: const Text('tag vim'),
+          onPressed: () {
+            _tag = _tagVim;
+            _savedPage = 1;
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'tag vim');
+          },
+        ),
         CupertinoActionSheetAction(
           child: const Text('tag swift'),
           onPressed: () {
