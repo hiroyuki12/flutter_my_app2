@@ -41,11 +41,17 @@ class _State extends State<Mastodon> {
   int _sqlliteSavedPerPage = 0;
 
   var _tag = 'drikin';
-
+  final _tagDrikin= 'drikin';
+  final _tagMazzo = 'mazzo';
   final _tagsTrends = 'trends';
   final _tagFlutter = 'flutter';
   final _tagReact   = 'react';
   final _tagSwift   = 'swift';
+
+  var _avatar = 'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png';
+  final _avatarDrikin = 'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png';
+  final _avatarMazzo = 'https://mstdn.guru/system/accounts/avatars/000/000/002/original/d558dac3a8f99409.jpg';
+
   int _savedPage = 1;
   int _perPage = 20;
   var _maxId = "999999999999999999";
@@ -89,7 +95,18 @@ class _State extends State<Mastodon> {
 
   // This widget is the root of your application.
   Future<void> _load(int _page, int _perPage) async {
-    final res = await http.get(Uri.parse('https://mstdn.guru/api/v1/accounts/1/statuses?max_id=' +
+    var id = "1";
+    if (_tag == _tagMazzo)
+    {
+      id = "2";
+      _avatar = _avatarMazzo;
+    }
+    else if (_tag == _tagDrikin)
+    {
+      id = "1";
+      _avatar = _avatarDrikin;
+    }
+    final res = await http.get(Uri.parse('https://mstdn.guru/api/v1/accounts/' + id + '/statuses?max_id=' +
         _maxId));
     final data = json.decode(res.body);
     setState(() {
@@ -115,12 +132,10 @@ class _State extends State<Mastodon> {
         _items.add(Item(
           content: resultConent,
           //profileImageUrl: issue['user']['profile_image_url'] as String,
-          //id: issue['user']['id'] as String,
           id: issue['id'] as String,
           favourites_count: issue['favourites_count'],
           createdAt: issue['created_at'] as String,
           uri: issue['uri'] as String,
-          // tags: issue['tags'] as List,
         ));
       });
       _maxId = _items[_items.length-1].id as String;
@@ -179,7 +194,9 @@ class _State extends State<Mastodon> {
                             // ),
                             child: Image.network(
                               //issue.profileImageUrl!,
-                              'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png',
+                              //issue.account!.avatar!,
+                              //'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png',
+                              _avatar,
                               width: 70,
                             ),
                           ),
@@ -250,10 +267,11 @@ class _State extends State<Mastodon> {
           },
         ),*/
         CupertinoActionSheetAction(
-          child: const Text('tag swift'),
+          child: const Text('drikin'),
           onPressed: () {
-            _tag = _tagSwift;
+            _tag = _tagDrikin;
             _savedPage = 1;
+            _maxId = "999999999999999999";
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
@@ -261,14 +279,15 @@ class _State extends State<Mastodon> {
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
-            Navigator.pop(context, 'tag swift');
+            Navigator.pop(context, 'drikin');
           },
         ),
         CupertinoActionSheetAction(
-          child: const Text('tag react'),
+          child: const Text('mazzo'),
           onPressed: () {
-            _tag = _tagReact;
+            _tag = _tagMazzo;
             _savedPage = 1;
+            _maxId = "999999999999999999";
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
@@ -276,22 +295,7 @@ class _State extends State<Mastodon> {
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
-            Navigator.pop(context, 'tag react');
-          },
-        ),
-        CupertinoActionSheetAction(
-          child: const Text('tag flutter'),
-          onPressed: () {
-            _tag = _tagFlutter;
-            _savedPage = 1;
-            _items.clear();
-            _scrollController.animateTo(
-              0,  // first item
-              duration: Duration(seconds: 2),
-              curve: Curves.easeOutCirc,
-            );
-            _load(_savedPage, _perPage);
-            Navigator.pop(context, 'tag flutter');
+            Navigator.pop(context, 'mazzo');
           },
         ),
         CupertinoActionSheetAction(
