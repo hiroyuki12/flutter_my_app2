@@ -103,3 +103,9 @@ https://www.flutter-study.dev/recipe/twitter
 
 Get Tweet timelines
 https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-user_timeline
+
+MastodonViewController.swift
+https://github.com/hiroyuki12/HelloWorldSwift/blob/master/HelloWorldSwift/MastodonViewController.swift
+
+文字列内に含まれる全ての文字列を置換する(Dart)
+http://www.openspc2.org/reibun/Dart/ver1.1/code/String/3001/index.html
