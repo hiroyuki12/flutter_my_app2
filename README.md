@@ -34,6 +34,9 @@ YOASOBIくらいの最小構成でスマホアプリを開発する with Flutter
 url_launcher
 https://zenn.dev/hagakun_dev/articles/23bba803cbec13
 
+Flutterで顔認証/指紋認証を簡単に実装する(Info.plistに追加が必要)
+https://qiita.com/coka__01/items/76af4ea73a6a8c8fa135
+
 Flutterでテキストリンクのやり方
 CupertinoButtonのonPressedに追加
 https://qiita.com/nkmrh/items/c8000fb25e1e86c25c1d
