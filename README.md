@@ -113,5 +113,6 @@ http://www.openspc2.org/reibun/Dart/ver1.1/code/String/3001/index.html
 
 Flutterのqr_code_scannerでQRコードを読み込む(iPhone Xsでバーコード読み込みできた)
 https://zuma-lab.com/posts/flutter-qr-code-scanner-camera
-https://github.com/kazuma-fujita/flutter_qr_code_scanner
+
+Flutterで権限許可のためアプリ設定画面を開く方法(permission_handler)
 https://selegee.com/7474/
