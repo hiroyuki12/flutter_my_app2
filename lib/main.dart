@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   context, MaterialPageRoute(builder: (context) => Qiita())),
             ),
             CupertinoButton(
-              child: Text("Mastodon(API)"),
+              child: Text("Mstdn(API)"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Mastodon())),
             ),
