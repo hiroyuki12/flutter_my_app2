@@ -350,7 +350,13 @@ String fromAtNow(String sentDateJst) {
   final Duration difference = DateTime.now().difference(date);
   final int sec = difference.inSeconds;
 
-  if (sec >= 60 * 60 * 24) {
+  if (sec >= 60 * 60 * 24 * 30) {
+    double inMonths = sec / 60 / 60 / 24 / 30;
+    int intMonths = inMonths.toInt();
+    if(intMonths < 2)  return 'a month ago';
+    else if(intMonths > 11)  return 'a year ago';
+    else return '${intMonths} months ago';
+  } else if (sec >= 60 * 60 * 24) {
     return '${difference.inDays.toString()} days ago';
   } else if (sec >= 60 * 60) {
     return '${difference.inHours.toString()} hours ago';
