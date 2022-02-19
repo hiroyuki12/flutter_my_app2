@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:oauth1/oauth1.dart' as oauth1;
 import 'package:url_launcher/url_launcher.dart';
+import 'Constants.dart';
 
 /*void main() {
   runApp(MyApp());
@@ -46,8 +47,8 @@ class _MyWidgetState extends State<MyWidget> {
     oauth1.SignatureMethods.hmacSha1,
   );
   final clientCredentials = oauth1.ClientCredentials(
-    'Twitter API Key をここに設定',
-    'Twitter API Key Secret をここに設定',
+    Constants.twitterAPIkey,       //'Twitter API Key をここに設定',
+    Constants.twitterAPIsecretKey, //'Twitter API Key Secret をここに設定',
   );
 
   @override
@@ -61,8 +62,8 @@ class _MyWidgetState extends State<MyWidget> {
       platform.signatureMethod,
       clientCredentials,
       oauth1.Credentials(
-        'Twitter Access Token をここに設定',
-        'Twitter Access Token Secret をここに設定',
+        Constants.twitterAccessToken,       // 'Twitter Access Token をここに設定',
+        Constants.twitterAccessTokenSecret, // 'Twitter Access Token Secret をここに設定',
       ),
     );
     final apiResponse = await client.get(
