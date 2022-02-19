@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'pages/QiitaScreen.dart';
+import 'pages/MastodonScreen.dart';
 import 'pages/TwitterScreen.dart';
 import 'pages/Cupertino/CupertinoMenu.dart';
 import 'pages/Cupertino/CupertinoSub.dart';
@@ -70,6 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text("Qiita(API)"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Qiita())),
+            ),
+            CupertinoButton(
+              child: Text("Mastodon(API)"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Mastodon())),
             ),
             CupertinoButton(
               child: Text("(Need API KEY)Twitter(API)"),
