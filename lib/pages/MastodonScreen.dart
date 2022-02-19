@@ -19,12 +19,14 @@ class Item {
     this.uri,
     this.createdAt,
     this.favourites_count,
+    this.id,
   });
 
   final String? content;
   final String? uri;
   final String? createdAt;
   final int? favourites_count;
+  final String? id;
 }
 
 class _State extends State<Mastodon> {
@@ -87,12 +89,8 @@ class _State extends State<Mastodon> {
 
   // This widget is the root of your application.
   Future<void> _load(int _page, int _perPage) async {
-    //var res;
-
-    //final res = await http.get(Uri.parse('https://qiita.com/api/v2/items'));
-    //final res = await http.get(Uri.parse('https://qiita.com/api/v2/tags/Flutter/items?page=1&per_page=20'));
-    final res = await http.get(Uri.parse('https://mstdn.guru/api/v1/accounts/1/statuses'));//?max_id=' +
-        //_maxId));
+    final res = await http.get(Uri.parse('https://mstdn.guru/api/v1/accounts/1/statuses?max_id=' +
+        _maxId));
     final data = json.decode(res.body);
     setState(() {
       final items = data as List;
@@ -108,21 +106,24 @@ class _State extends State<Mastodon> {
         resultConent = resultConent.replaceAll('<a href="https://mstdn.guru/','');
         resultConent = resultConent.replaceAll('" class="u-url mention">','');
         resultConent = resultConent.replaceAll('</a>','');
-        resultConent = resultConent.replaceAll('&amp;','');
+        resultConent = resultConent.replaceAll('&amp;','&');
         resultConent = resultConent.replaceAll('<a href=jhttps://qiitadon.com/','');
+        resultConent = resultConent.replaceAll('&gt','>');
+        resultConent = resultConent.replaceAll('" class="mention hashtag" rel="tag">','');
+        resultConent = resultConent.replaceAll('tags/','#');
+        resultConent = resultConent.replaceAll('&quot;','"');
         _items.add(Item(
-          //content: issue['content'] as String,
           content: resultConent,
           //profileImageUrl: issue['user']['profile_image_url'] as String,
           //id: issue['user']['id'] as String,
+          id: issue['id'] as String,
           favourites_count: issue['favourites_count'],
           createdAt: issue['created_at'] as String,
-          //url: issue['url'] as String,
+          uri: issue['uri'] as String,
           // tags: issue['tags'] as List,
         ));
-        //print('aa');
-       // print(issue['created_at']);
       });
+      _maxId = _items[_items.length-1].id as String;
     });
   }
 
@@ -132,7 +133,6 @@ class _State extends State<Mastodon> {
         navigationBar: CupertinoNavigationBar(
           backgroundColor: CupertinoColors.black,
           middle: Text(
-              // "CupertinoQiita Page " +
               _tag +
                   " Page " +
                   _savedPage.toString() +
