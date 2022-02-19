@@ -93,10 +93,10 @@ class _MyWidgetState extends State<MyWidget> {
       items.forEach((dynamic element) {
         final issue = element as Map;
         try {
-          _images.add(issue['entities']['media'][0]['media_url']);
-          /*for (var _url in issue['extended_entities']['media']) {
+          //_images.add(issue['entities']['media'][0]['media_url']);
+          for (var _url in issue['extended_entities']['media']) {
             _images.add(_url['media_url']);
-          }*/
+          }
         }
         catch (e) {
         }
