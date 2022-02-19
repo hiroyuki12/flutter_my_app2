@@ -1,31 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'confirm_view.dart';
+//import 'confirm_view.dart';
 import 'qr_code_scanner_view.dart';
 import '../DarkModeColor.dart';
 
 class Const {
-  static const routeFirstPage = '/home';
-  static const routeQRCodeScanner = '/qr-code-scanner';
+  //static const routeFirstPage = '/home';
+  //static const routeQRCodeScanner = '/qr-code-scanner';
   static const routeConfirm = '/confirm';
 }
 
-class FirstPageView extends StatelessWidget {
+class FirstPageView extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.white),
-      routes: <String, WidgetBuilder>{
-        Const.routeFirstPage: (BuildContext context) => FirstPageView(),
-        Const.routeQRCodeScanner: (BuildContext context) => QRCodeScannerView(),
-        Const.routeConfirm: (BuildContext context) => ConfirmView(),
-      },
-      home: _FirstPage(),
-    );
+  State<StatefulWidget> createState() {
+    return _State();
   }
 }
 
-class _FirstPage extends StatelessWidget {
+class _State extends State<FirstPageView> {
   @override
   Widget build(BuildContext context) {
     isDarkMode = true;
@@ -44,7 +36,8 @@ class _FirstPage extends StatelessWidget {
       child: CupertinoButton(
         onPressed: () {
           //if (await Permission.camera.request().isGranted) {
-            Navigator.pushNamed(context, Const.routeQRCodeScanner);
+            Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => QRCodeScannerView()));
           //} else {
           //  await showRequestPermissionDialog(context);
           //}
