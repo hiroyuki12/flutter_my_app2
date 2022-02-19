@@ -34,7 +34,7 @@ class _State extends State<CupertinoSub> {
                   context, MaterialPageRoute(builder: (context) => Twitter())),
             ),
             CupertinoButton(
-              child: Text("QrCodeReader"),
+              child: Text("QR code scanner"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => FirstPageView())),
             ),
