@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
 //import '../Firebase/CupertinoFirebaseSignup.dart';
+import '../../pages/TwitterScreen.dart';
 
 class CupertinoSub extends StatefulWidget {
   @override
@@ -20,12 +21,17 @@ class _State extends State<CupertinoSub> {
       navigationBar: CupertinoNavigationBar(
         backgroundColor:
             isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
-        middle: Text("Cupertino Menu", style: _buildTextStyle()),
+        middle: Text("Cupertino Sub", style: _buildTextStyle()),
         //trailing: Text("Edit", style: myTextStyle),
       ),
       child: Center(
         child: Column(
           children: <Widget>[
+            CupertinoButton(
+              child: Text("(Need API KEY)Twitter(API)"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Twitter())),
+            ),
             /*CupertinoButton(
               child: Text("(Need API Key) Firebase(signup)"),
               onPressed: () => Navigator.push(

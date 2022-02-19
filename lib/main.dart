@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'pages/QiitaScreen.dart';
 import 'pages/MastodonScreen.dart';
-import 'pages/TwitterScreen.dart';
 import 'pages/Cupertino/CupertinoMenu.dart';
 import 'pages/Cupertino/CupertinoSub.dart';
 import 'pages/Basics/BasicsMenu.dart';
@@ -77,11 +76,6 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Mastodon())),
             ),
-            CupertinoButton(
-              child: Text("(Need API KEY)Twitter(API)"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Twitter())),
-            ),
             /*CupertinoButton(
               child: Text("Cupertino Firebase"),
               onPressed: () => Navigator.push(context,
@@ -99,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   await _launchURL('https://qiita.com/tags/flutter');
                 }),
             CupertinoButton(
-                child: Text("はてなブログタグ(外部サイト)"),
+                child: Text("はてなブログタグ(Flutter) 外部サイト"),
                 onPressed: () async {
                   await _launchURL('https://d.hatena.ne.jp/keyword/flutter');
                 }),
