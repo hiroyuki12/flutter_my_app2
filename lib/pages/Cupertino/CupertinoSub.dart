@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'DarkModeColor.dart';
 //import '../Firebase/CupertinoFirebaseSignup.dart';
 import '../../pages/TwitterScreen.dart';
+import '../../pages/QrCodeReader/first_page_view.dart';
 
 class CupertinoSub extends StatefulWidget {
   @override
@@ -31,6 +32,11 @@ class _State extends State<CupertinoSub> {
               child: Text("(Need API KEY)Twitter(API)"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Twitter())),
+            ),
+            CupertinoButton(
+              child: Text("QrCodeReader"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => FirstPageView())),
             ),
             /*CupertinoButton(
               child: Text("(Need API Key) Firebase(signup)"),
