@@ -57,10 +57,6 @@ class _State extends State<Mastodon> {
   final _tagReact   = 'react';
   final _tagSwift   = 'swift';
 
-  var _avatar = 'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png';
-  final _avatarDrikin = 'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png';
-  final _avatarMazzo = 'https://mstdn.guru/system/accounts/avatars/000/000/002/original/d558dac3a8f99409.jpg';
-
   int _savedPage = 1;
   int _perPage = 20;
   var _maxId = "999999999999999999";
@@ -108,12 +104,10 @@ class _State extends State<Mastodon> {
     if (_tag == _tagMazzo)
     {
       id = "2";
-      _avatar = _avatarMazzo;
     }
     else if (_tag == _tagDrikin)
     {
       id = "1";
-      _avatar = _avatarDrikin;
     }
     var url = 'https://mstdn.guru/api/v1/accounts/' + id + '/statuses?max_id=' + _maxId;
 
@@ -231,10 +225,7 @@ class _State extends State<Mastodon> {
                             //     width: 50,),
                             // ),
                             child: Image.network(
-                              //issue.profileImageUrl!,
                               issue.avatar!,
-                              //'https://mstdn.guru/system/accounts/avatars/000/000/001/original/b9be170352507d233d043df178a9a384.png',
-                              //_avatar,
                               width: 70,
                             ),
                           ),
