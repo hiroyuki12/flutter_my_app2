@@ -43,9 +43,14 @@ class _State extends State<Mastodon> {
   int _sqlliteSavedPerPage = 0;
 
   var _tag = 'drikin';
-  final _tagDrikin= 'drikin';
-  final _tagMazzo = 'mazzo';
-  final _tagGuru = 'guru';
+  final _tagDrikin = 'drikin';
+  final _tagMazzo  = 'mazzo';
+  final _tagGuru   = 'mstdn.guru';
+  final _tagJp     = 'mstdn.jp';
+  final _tagQiita  = 'qiitadon';
+  final _tagPawoo  = 'pawoo';
+  final _tagSocial = 'social';
+  final _tagCloud  = 'cloud';
 
   final _tagsTrends = 'trends';
   final _tagFlutter = 'flutter';
@@ -115,6 +120,26 @@ class _State extends State<Mastodon> {
     if(_tag == _tagGuru)
     {
        url = 'https://mstdn.guru/api/v1/timelines/public?local=true&max_id=' + _maxId;
+    }
+    if(_tag == _tagJp)
+    {
+       url = 'https://mstdn.jp/api/v1/timelines/public?local=true&max_id=' + _maxId;
+    }
+    if(_tag == _tagQiita)
+    {
+       url = 'https://qiitadon.com/api/v1/timelines/public?local=true&max_id=' + _maxId;
+    }
+    if(_tag == _tagPawoo)
+    {
+       url = 'https://pawoo.net/api/v1/timelines/public?local=true&max_id=' + _maxId;
+    }
+    if(_tag == _tagSocial)
+    {
+       url = 'https://mstdn.social/api/v1/timelines/public?local=true&max_id=' + _maxId;
+    }
+    if(_tag == _tagCloud)
+    {
+       url = 'https://mastodon.cloud/api/v1/timelines/public?local=true&max_id=' + _maxId;
     }
 
     final res = await http.get(Uri.parse(url));
@@ -325,6 +350,54 @@ class _State extends State<Mastodon> {
             );
             _load(_savedPage, _perPage);
             Navigator.pop(context, 'mstdn.guru');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('mstdn.jp'),
+          onPressed: () {
+            _tag = _tagJp;
+            _savedPage = 1;
+            _maxId = "999999999999999999";
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'mstdn.jp');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('qiitadon'),
+          onPressed: () {
+            _tag = _tagQiita;
+            _savedPage = 1;
+            _maxId = "999999999999999999";
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'qiitadon');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('pawoo'),
+          onPressed: () {
+            _tag = _tagPawoo;
+            _savedPage = 1;
+            _maxId = "999999999999999999";
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'pawoo');
           },
         ),
         CupertinoActionSheetAction(
