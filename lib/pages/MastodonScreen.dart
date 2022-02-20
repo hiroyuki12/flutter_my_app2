@@ -155,14 +155,32 @@ class _State extends State<Mastodon> {
       final items = data as List;
       items.forEach((dynamic element) {
         final issue = element as Map;
-        String resultConent = issue['content'].replaceAll('<p>','');
+        var _uri = issue['uri'] as String;
+        var _avatar = issue['account']['avatar'] as String;
+        var _content = issue['content'];
+        if (issue['reblog'] != null) {
+          _uri = issue['reblog']['uri'] as String;
+          _avatar = issue['reblog']['account']['avatar'] as String;
+          _content = 'boosted | ' + issue['reblog']['content'];
+          
+        }
+        String resultConent = _content.replaceAll('<p>','');
         resultConent = resultConent.replaceAll('</p>','');
         resultConent = resultConent.replaceAll('<span>','');
+        resultConent = resultConent.replaceAll('<span class="invisible">','');
+        resultConent = resultConent.replaceAll('<span class="ellipsis">','');
+        resultConent = resultConent.replaceAll('<span class="">','');
         resultConent = resultConent.replaceAll('</span>','');
+        resultConent = resultConent.replaceAll('rel="nofollow noopener noreferrer"','');
+        resultConent = resultConent.replaceAll('target="_blank"','');
         resultConent = resultConent.replaceAll('%lt','');
         resultConent = resultConent.replaceAll('<br />','');
         resultConent = resultConent.replaceAll('<span class="h-card">','');
         resultConent = resultConent.replaceAll('<a href="https://mstdn.guru/','');
+        resultConent = resultConent.replaceAll('<a href="','');
+        //resultConent = resultConent.replaceAll('https://note.com/','');
+        //resultConent = resultConent.replaceAll('https://www.youtube.com/watch?v=','');
+        resultConent = resultConent.replaceAll('https://','');
         resultConent = resultConent.replaceAll('" class="u-url mention">','');
         resultConent = resultConent.replaceAll('</a>','');
         resultConent = resultConent.replaceAll('&amp;','&');
@@ -171,19 +189,14 @@ class _State extends State<Mastodon> {
         resultConent = resultConent.replaceAll('" class="mention hashtag" rel="tag">','');
         resultConent = resultConent.replaceAll('tags/','#');
         resultConent = resultConent.replaceAll('&quot;','"');
-        var uri = issue['uri'] as String;
-        if (issue['reblog'] != null) {
-          uri = issue['reblog']['uri'] as String;
-        }
         _items.add(Item(
           content: resultConent,
           //profileImageUrl: issue['user']['profile_image_url'] as String,
           id: issue['id'] as String,
           favourites_count: issue['favourites_count'],
           createdAt: issue['created_at'] as String,
-          //uri: issue['uri'] as String,
-          uri: uri,
-          avatar: issue['account']['avatar'] as String,
+          uri: _uri,
+          avatar: _avatar,
         ));
         //print('aa');
         //print(issue['account']['avatar']); 
