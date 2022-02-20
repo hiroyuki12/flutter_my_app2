@@ -38,7 +38,7 @@ class _State extends State<Twitter> {
   bool _isLoading = false;
   List<Item> _items = <Item>[];
   int _savedPage = 1;
-  var _maxId = "99";
+  var _maxId = "0";
   var _imagesCount = 0;
   //double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
   double _pageMaxScrollExtend = 19877.0; // Simulator iPhone 13, 200の時 
@@ -102,8 +102,9 @@ class _State extends State<Twitter> {
       ),
     );
     var url;
-    var _screenName = 'twitterjp';
-    if(_maxId == '99')
+    //var _screenName = 'twitterjp';
+    var _screenName = Constants.twitterScreenName;
+    if(_maxId == '0')
     {
       url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + _screenName + '&count=200&exclude_replies=true';
     }
