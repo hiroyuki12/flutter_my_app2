@@ -125,3 +125,19 @@ https://nekodeki.com/twitter_client⑧タイムラインに画像を表示する
 
 dropbox_client(pub.dev)
 https://pub.dev/packages/dropbox_client
+
+Make authenticated requests(Feedly APIを使うときにheaderにトークンをセットする)
+https://docs.flutter.dev/cookbook/networking/authenticated-requests
+
+FlutterでHTTPリクエストを行う方法(ベアラー（トークン）認証)
+https://ichi.pro/flutter-de-http-rikuesuto-o-okonau-hoho-229998064442607
+
+Converting timestamp
+https://stackoverflow.com/questions/50632217/converting-timestamp
+
+DateFormat利用例
+https://zenn.dev/iwaku/articles/2020-10-30-iwaku
+
+The feedly Cloud APIではてなブックマークお気に入りのタイトルを表示
+https://swiftintroduction.hatenablog.com/entry/2020/10/26/222532
+
