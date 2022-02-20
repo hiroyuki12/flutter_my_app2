@@ -19,17 +19,17 @@ class Feedly extends StatefulWidget {
 class Item {
   Item({
     this.title,
+    this.author,
     this.profileImageUrl,
-    this.daysAgo,
+    this.published,
     this.url,
-    this.continuation,
   });
 
   final String? title;
+  final String? author;
   final String? profileImageUrl;
-  final String? daysAgo;
+  final String? published;
   final String? url;
-  final String? continuation;
 }
 
 class _State extends State<Feedly> {
@@ -102,10 +102,7 @@ class _State extends State<Feedly> {
     else {
       _category = '9b810adf-9db6-4600-8377-b04aec630ffc';
     }
-    //var res;
 
-    //final res = await http.get(Uri.parse('https://qiita.com/api/v2/items'));
-    //final res = await http.get(Uri.parse('https://qiita.com/api/v2/tags/Flutter/items?page=1&per_page=20'));
     final res = await http.get(
       Uri.parse('https://cloud.feedly.com/v3/streams/contents?streamId=user/' +
         Constants.feedlyUserId +
@@ -122,16 +119,25 @@ class _State extends State<Feedly> {
       final items = data['items'] as List;
       items.forEach((dynamic element) {
         final issue = element as Map;
-        final profileImage = 'https://cdn.profile-image.st-hatena.com/users/' +
+        var profileImage;
+        if(_tag == _tagHbfav || _tag == _tagHatenaStuff) {
+          profileImage = 'https://cdn.profile-image.st-hatena.com/users/' +
                                issue['author'] + '/profile.gif';
+        }
+        else {
+          profileImage = 'https://storage.googleapis.com/zenn-topics/swift.png?hl=ja';
+        }
         int timestamp = issue['published'] as int;
+        _continuation = timestamp.toString();
+        var format = new DateFormat('yyyy-MM-dd HH:mm:ss');
+        var publishedDate = new DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
+        var formatDate = format.format(publishedDate);
         _items.add(Item(
-          //continuation: issue['continuation'] as String,
           title: issue['title'] as String,
+          author: issue['author'] as String,
           profileImageUrl: profileImage,
-          daysAgo: readTimestamp(timestamp),
+          published: formatDate,
           url: issue['alternate'][0]['href'] as String,
-          // tags: issue['tags'] as List,
         ));
       });
     });
@@ -215,7 +221,7 @@ class _State extends State<Feedly> {
                                 style: _buildSubTitleTextStyle(),
                               ),
                               Text(
-                                issue.daysAgo!,
+                                issue.author! + ' ' + fromAtNow(issue.published!),
                                 style: _buildSubTitleTextStyle(),
                               ),
                             ],
@@ -232,30 +238,28 @@ class _State extends State<Feedly> {
     return CupertinoActionSheet(
       //title: const Text('選択した項目が画面に表示されます'),
       actions: <Widget>[
-        /*CupertinoActionSheetAction(
-          child: const Text('Clear'),
+        CupertinoActionSheetAction(
+          child: const Text('hatena staff'),
           onPressed: () {
-            // _savedPage++;
-            // _load(tags, _savedPage, _perPage);
-            setState(() {
-              _items.clear();
-            });
-            Navigator.pop(context, 'Clear');
+            _tag = _tagHatenaStuff;
+            _savedPage = 1;
+            _continuation = "99999999999999";
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'hatena staff');
           },
         ),
-        CupertinoActionSheetAction(
-          child: const Text('Next Page'),
-          onPressed: () {
-            _savedPage++;
-            _load(_savedPage, _perPage);
-            Navigator.pop(context, 'Next Page');
-          },
-        ),*/
         CupertinoActionSheetAction(
           child: const Text('zenn swift'),
           onPressed: () {
             _tag = _tagZennSwift;
             _savedPage = 1;
+            _continuation = "99999999999999";
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
@@ -271,6 +275,7 @@ class _State extends State<Feedly> {
           onPressed: () {
             _tag = _tagHbfav;
             _savedPage = 1;
+            _continuation = "99999999999999";
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
@@ -324,7 +329,8 @@ TextStyle _buildSubTitleTextStyle() {
   );
 }
 
-String readTimestamp(int timestamp) {
+
+/*String readTimestamp(int timestamp) {
   var now = new DateTime.now();
   var format = new DateFormat('HH:mm a');
   var date = new DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
@@ -342,7 +348,7 @@ String readTimestamp(int timestamp) {
   }
 
   return time;
-}
+}*/
 
 String fromAtNow(String sentDateJst) {
   DateTime date = DateTime.parse(sentDateJst);
@@ -353,17 +359,24 @@ String fromAtNow(String sentDateJst) {
   if (sec >= 60 * 60 * 24 * 30) {
     double inMonths = sec / 60 / 60 / 24 / 30;
     int intMonths = inMonths.toInt();
-    if(intMonths < 2)  return 'a month ago';
-    else if(intMonths > 11)  return 'a year ago';
-    else return '${intMonths} months ago';
+    //if(intMonths < 2)  return 'a month ago';
+    if(intMonths < 2)  return 'a month';
+    //else if(intMonths > 11)  return 'a year ago';
+    else if(intMonths > 11)  return 'a year';
+    //else return '${intMonths} months ago';
+    else return '${intMonths} months';
   } else if (sec >= 60 * 60 * 24) {
-    return '${difference.inDays.toString()} days ago';
+    //return '${difference.inDays.toString()} days ago';
+    return '${difference.inDays.toString()}d';
   } else if (sec >= 60 * 60) {
-    return '${difference.inHours.toString()} hours ago';
+    //return '${difference.inHours.toString()} hours ago';
+    return '${difference.inHours.toString()}h';
   } else if (sec >= 60) {
-    return '${difference.inMinutes.toString()} minutes ago';
+    //return '${difference.inMinutes.toString()} minutes ago';
+    return '${difference.inMinutes.toString()}m';
   } else {
-    return '$sec seconds ago';
+    //return '$sec seconds ago';
+    return '${sec}s';
   }
 }
 
