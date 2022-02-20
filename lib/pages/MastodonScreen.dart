@@ -21,6 +21,7 @@ class Item {
     this.favourites_count,
     this.id,
     this.avatar,
+    this.reblog,
   });
 
   final String? content;
@@ -29,7 +30,19 @@ class Item {
   final int? favourites_count;
   final String? id;
   final String? avatar;
+  final ReblogClass? reblog;
 }
+
+class ReblogClass {
+  ReblogClass({
+    this.uri,
+  });
+
+  final String? uri;
+  //var content: String
+  //var account: AccountStruct
+}
+
 
 class _State extends State<Mastodon> {
   ScrollController _scrollController = ScrollController();
@@ -158,13 +171,18 @@ class _State extends State<Mastodon> {
         resultConent = resultConent.replaceAll('" class="mention hashtag" rel="tag">','');
         resultConent = resultConent.replaceAll('tags/','#');
         resultConent = resultConent.replaceAll('&quot;','"');
+        var uri = issue['uri'] as String;
+        if (issue['reblog'] != null) {
+          uri = issue['reblog']['uri'] as String;
+        }
         _items.add(Item(
           content: resultConent,
           //profileImageUrl: issue['user']['profile_image_url'] as String,
           id: issue['id'] as String,
           favourites_count: issue['favourites_count'],
           createdAt: issue['created_at'] as String,
-          uri: issue['uri'] as String,
+          //uri: issue['uri'] as String,
+          uri: uri,
           avatar: issue['account']['avatar'] as String,
         ));
         //print('aa');
