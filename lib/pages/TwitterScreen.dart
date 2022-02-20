@@ -49,7 +49,15 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  ScrollController _scrollController = ScrollController();
+  bool _isLoading = false;
   List<Item> _items = <Item>[];
+  int _savedPage = 1;
+  var _maxId = "99";
+  var _imagesCount = 0;
+  //double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
+  double _pageMaxScrollExtend = 19877.0; // Simulator iPhone 13, 200の時 
+  double _maxScrollExtend = 19877.0;
 
   final platform = oauth1.Platform(
     'https://api.twitter.com/oauth/request_token',
@@ -65,10 +73,41 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(_scrollListener);
     _load();
   }
 
+  void _scrollListener() {
+    // スクロールを検知したときに呼ばれる
+    double positionRate =
+        //_scrollController.offset / _scrollController.position.maxScrollExtent;
+        (_scrollController.offset - (_pageMaxScrollExtend * (_savedPage - 1))) /
+            _maxScrollExtend;
+
+    if (positionRate > 0.99) {
+      if (_isLoading == false) {
+        _isLoading = true;
+        _savedPage++;
+        _load();
+        print('_load');
+        print(positionRate);  // debug
+      }
+    } else {
+      _isLoading = false;
+      //print(_maxScrollExtend);
+      //print(positionRate);  // debug
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+
   Future<void> _load() async {
+    print('_load() start');
     final client = oauth1.Client(
       platform.signatureMethod,
       clientCredentials,
@@ -77,45 +116,55 @@ class _MyWidgetState extends State<MyWidget> {
         Constants.twitterAccessTokenSecret, // 'Twitter Access Token Secret をここに設定',
       ),
     );
-    final apiResponse = await client.get(
-      Uri.parse(
-        //'https://api.twitter.com/1.1/statuses/home_timeline.json?count=30'),
-        //'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=twitterjp&count=30'),
-        'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=twitterjp&count=200&exclude_replies=true'),
-        //'https://api.twitter.com/1.1/search/tweets.json?q=flutter&lang=ja&count=30'),
-    );
+    var url;
+    var _screenName = 'twitterjp';
+    if(_maxId == '99')
+    {
+      url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + _screenName + '&count=200&exclude_replies=true';
+    }
+    else
+    {
+      url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + _screenName + '&count=200&max_id=' + _maxId;
+      //print('url');
+      //print(url);
+    } 
+    final apiResponse = await client.get(Uri.parse(url),);
     final data = json.decode(apiResponse.body);
     final List<String> _images = [];
 
     setState((){
       final items = data as List;
-      //List<Item> _items = <Item>[];
       items.forEach((dynamic element) {
         final issue = element as Map;
         try {
-          //_images.add(issue['entities']['media'][0]['media_url']);
           for (var _url in issue['extended_entities']['media']) {
             _images.add(_url['media_url']);
           }
+          _imagesCount = _images.length;
+          //print(_imagesCount);
         }
         catch (e) {
         }
         _items.add(Item(
-          //id_str: issue['id_str'] as String,
-          text:   issue['text'] as String,
-          favorite_count:   issue['favorite_count'] as int,
-          retweet_count:   issue['retweet_count'] as int,
-          profile_image_url:   issue['user']['profile_image_url'] as String,
-          is_quote_status:   issue['is_quote_status'] as bool,
+          id_str: issue['id_str'] as String,
+          //text:   issue['text'] as String,
+          //favorite_count:   issue['favorite_count'] as int,
+          //retweet_count:   issue['retweet_count'] as int,
+          //profile_image_url:   issue['user']['profile_image_url'] as String,
+          //is_quote_status:   issue['is_quote_status'] as bool,
           image: _images,
-          //image1:   issue['entities']['media'][0]['media_url_https'] as String,
         ));
       });
+      _maxId = _items[_items.length-1].id_str as String;
+      print('_maxId');
+      print(_maxId);
+      print('_imagesCount');
+      print(_imagesCount);
     });
     //print(apiResponse.body);
     //print(_items[0].text);
-    print('aa');
-    print(_items[0].image);
+    //print('aa');
+    //print(_items[0].image);
     //print(_items[1].text);
   }
 
@@ -133,26 +182,25 @@ class _MyWidgetState extends State<MyWidget> {
         : Column(children: [
             Flexible(
               child: ListView.builder(
+                controller: _scrollController,
                 itemBuilder: (BuildContext context, int index) {
                   final issue = _items[index];
-                  //if(issue.is_quote_status!)
-                  {
-                    return Row(
-                      children: <Widget>[
-                        Expanded(
-                          //child: Text(issue.text!, style: _buildTextStyle())
-                          //child: Text(issue.favorite_count!.toString(), style: _buildTextStyle())
-                          //child: Text(issue.retweet_count!.toString(), style: _buildTextStyle())
-                          //child: Text(issue.profile_image_url!, style: _buildTextStyle())
-                          //child: Text(issue.image![index], style: _buildTextStyle())
-                          child: Image.network(
-                            issue.image![index],
-                            width: 210,
-                          ),
-                        )
-                      ]
-                    );
-                  }
+                  return Row(
+                    children: <Widget>[
+                      //Text(index.toString(), style: _buildTextStyle()),
+                      Expanded(
+                        //child: Text(issue.text!, style: _buildTextStyle())
+                        //child: Text(issue.favorite_count!.toString(), style: _buildTextStyle())
+                        //child: Text(issue.retweet_count!.toString(), style: _buildTextStyle())
+                        //child: Text(issue.profile_image_url!, style: _buildTextStyle())
+                        //child: Text(issue.image![index], style: _buildTextStyle())
+                        child: Image.network(
+                          issue.image![index],
+                          width: 210,
+                        ),
+                      ),
+                    ]
+                  );
                 }
               )
             )
