@@ -6,20 +6,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'Constants.dart';
 import 'DarkModeColor.dart';
 
-/*void main() {
-  runApp(MyApp());
-}*/
-
-class Twitter extends StatelessWidget {
+class Twitter extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyWidget(),
-    );
+  State<StatefulWidget> createState() {
+    return _State();
   }
 }
 
@@ -43,12 +33,7 @@ class Item {
   final List<String>? image;
 }
 
-class MyWidget extends StatefulWidget {
-  @override
-  _MyWidgetState createState() => _MyWidgetState();
-}
-
-class _MyWidgetState extends State<MyWidget> {
+class _State extends State<Twitter> {
   ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
   List<Item> _items = <Item>[];
