@@ -9,6 +9,7 @@ import 'pages/Cupertino/CupertinoSub.dart';
 import 'pages/Basics/BasicsMenu.dart';
 import 'pages/CupertinoWebView.dart';
 import 'pages/TwitterScreen.dart';
+import 'pages/FeedlyScreen.dart';
 //import 'pages/Firebase/CupertinoFirebase.dart';
 
 void main() {
@@ -81,6 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text("(Need API KEY)Twitter(API)"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Twitter())),
+            ),
+            CupertinoButton(
+              child: Text("(Need Developer Token)Feedly(API)"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Feedly())),
             ),
             /*CupertinoButton(
               child: Text("Cupertino Firebase"),
