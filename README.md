@@ -146,3 +146,6 @@ https://memo.furyutei.com/entry/20100124/1264342029
 
 効率化するために since_id を使用する
 http://westplain.sakuraweb.com/translate/twitter/Documentation/REST-APIs/Public-API/Working-with-Timelines.cgi
+
+Twitterを古い順に見る方法！最初のツイートの検索方法も紹介(@0220nicole since:2014-04-01 until:2014-04-30)
+https://applimura.com/twitter-first-tweet/
