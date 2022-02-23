@@ -141,3 +141,5 @@ https://zenn.dev/iwaku/articles/2020-10-30-iwaku
 The feedly Cloud APIではてなブックマークお気に入りのタイトルを表示
 https://swiftintroduction.hatenablog.com/entry/2020/10/26/222532
 
+Twitter APIのsince_idの仕様を勘違いしていた…
+https://memo.furyutei.com/entry/20100124/1264342029
