@@ -143,3 +143,6 @@ https://swiftintroduction.hatenablog.com/entry/2020/10/26/222532
 
 Twitter APIのsince_idの仕様を勘違いしていた…
 https://memo.furyutei.com/entry/20100124/1264342029
+
+効率化するために since_id を使用する
+http://westplain.sakuraweb.com/translate/twitter/Documentation/REST-APIs/Public-API/Working-with-Timelines.cgi
