@@ -47,6 +47,7 @@ class _State extends State<Feedly> {
 
   final _tagHbfav        = "hbfav";
   final _tagZennSwift    = "zennSwift";
+  final _tagZennFlutter  = "zennFlutter";
   final _tagHatenaStuff  = "hatenastuff";
 
   int _savedPage = 1;
@@ -98,6 +99,9 @@ class _State extends State<Feedly> {
     }
     else if (_tag == _tagZennSwift) {
       _category = '01328fc1-f342-4bae-b459-d613ff670195';
+    }
+    else if (_tag == _tagZennFlutter) {
+      _category = 'c3eaaa98-21a9-40e1-bbc8-056a07725a9d';
     }
     else {
       _category = '9b810adf-9db6-4600-8377-b04aec630ffc';
@@ -221,7 +225,7 @@ class _State extends State<Feedly> {
                                 style: _buildSubTitleTextStyle(),
                               ),
                               Text(
-                                issue.author! + ' ' + fromAtNow(issue.published!),
+                                fromAtNow(issue.published!) + ' - ' + issue.author!,
                                 style: _buildSubTitleTextStyle(),
                               ),
                             ],
@@ -252,6 +256,22 @@ class _State extends State<Feedly> {
             );
             _load(_savedPage, _perPage);
             Navigator.pop(context, 'hatena staff');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('zenn flutter'),
+          onPressed: () {
+            _tag = _tagZennFlutter;
+            _savedPage = 1;
+            _continuation = "99999999999999";
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'zenn flutter');
           },
         ),
         CupertinoActionSheetAction(
