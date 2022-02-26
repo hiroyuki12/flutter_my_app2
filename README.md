@@ -149,3 +149,10 @@ http://westplain.sakuraweb.com/translate/twitter/Documentation/REST-APIs/Public-
 
 Twitterを古い順に見る方法！最初のツイートの検索方法も紹介(@0220nicole since:2014-04-01 until:2014-04-30)
 https://applimura.com/twitter-first-tweet/
+
+vim-flutter シンタックスハイライトがつく
+https://qiita.com/int_main_Nick/items/19581999ff746b8e2854
+
+coc-flutter　補完表示、コードチェック
+https://dev.classmethod.jp/articles/cocnvim-adventcalendar-day21/
+
