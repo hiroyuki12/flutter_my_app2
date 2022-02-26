@@ -23,6 +23,7 @@ class Item {
     this.profileImageUrl,
     this.published,
     this.url,
+    this.count,
   });
 
   final String? title;
@@ -30,11 +31,13 @@ class Item {
   final String? profileImageUrl;
   final String? published;
   final String? url;
+  String? count;
 }
 
 class _State extends State<Feedly> {
   ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
+  int _count = 0;
 
   List<Item> _items = <Item>[];
 
@@ -136,15 +139,42 @@ class _State extends State<Feedly> {
         var format = DateFormat('yyyy-MM-dd HH:mm:ss');
         var publishedDate = DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
         var formatDate = format.format(publishedDate);
+        var url = issue['alternate'][0]['href'] as String;
+        _getFavCount(url);
         _items.add(Item(
           title: issue['title'] as String,
           author: issue['author'] as String,
           profileImageUrl: profileImage,
           published: formatDate,
           url: issue['alternate'][0]['href'] as String,
+          //count: '',
+          count: _count.toString(),
         ));
       });
     });
+  }
+
+  Future<void> _getFavCount(String _url) async {
+    final res = await http.get(
+      Uri.parse('https://bookmark.hatenaapis.com/count/entry?url=' + _url),
+    );
+
+    for(int i=0; i<5; i++) {
+      //print(_items[i].url);
+      if(_items[i].url == _url) {
+        _items[i].count = res.body;
+        print('cc');
+        print(_items[i].count);
+        setState(() {
+           _count = int.parse((res.body).toString());
+        });
+      }
+    }
+
+    //print('aa');
+    //print(res.body);
+    _count = int.parse((res.body).toString());
+    //return res.body;
   }
 
   @override
@@ -225,7 +255,7 @@ class _State extends State<Feedly> {
                                 style: _buildSubTitleTextStyle(),
                               ),
                               Text(
-                                fromAtNow(issue.published!) + ' - ' + issue.author!,
+                                issue.count! + ' users - ' + fromAtNow(issue.published!) + ' - ' + issue.author!,
                                 style: _buildSubTitleTextStyle(),
                               ),
                             ],
