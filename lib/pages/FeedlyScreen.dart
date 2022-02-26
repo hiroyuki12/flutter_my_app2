@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'CupertinoWebView.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'CupertinoWebView.dart';
+//import 'package:url_launcher/url_launcher.dart';
 import 'Constants.dart';
 
 class Feedly extends StatefulWidget {
@@ -40,8 +40,8 @@ class _State extends State<Feedly> {
 
   //final MyPage page = MyPage.newPage();
 
-  int _sqliteSavedPage = 0;
-  int _sqlliteSavedPerPage = 0;
+  final int _sqliteSavedPage = 0;
+  final int _sqlliteSavedPerPage = 0;
 
   var _tag = 'hbfav';
 
@@ -51,10 +51,10 @@ class _State extends State<Feedly> {
   final _tagHatenaStuff  = "hatenastuff";
 
   int _savedPage = 1;
-  int _perPage = 20;
+  final int _perPage = 20;
   var _continuation = "99999999999999";
-  double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
-  double _maxScrollExtend = 877.0;
+  final double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
+  final double _maxScrollExtend = 877.0;
 
   @override
   void initState() {
@@ -75,7 +75,7 @@ class _State extends State<Feedly> {
         _isLoading = true;
         _savedPage++;
         _load(_savedPage, _perPage);
-        print('_load');
+        //print('_load');
         //print(positionRate);  // debug
       }
     } else {
@@ -93,7 +93,7 @@ class _State extends State<Feedly> {
 
   // This widget is the root of your application.
   Future<void> _load(int _page, int _perPage) async {
-    var _category;
+    var _category = '';
     if (_tag == _tagHbfav) {
       _category = 'c59b3cef-0fa1-414c-8aca-dc9678aaa85f';
     }
@@ -123,7 +123,7 @@ class _State extends State<Feedly> {
       final items = data['items'] as List;
       items.forEach((dynamic element) {
         final issue = element as Map;
-        var profileImage;
+        var profileImage = '';
         if(_tag == _tagHbfav || _tag == _tagHatenaStuff) {
           profileImage = 'https://cdn.profile-image.st-hatena.com/users/' +
                                issue['author'] + '/profile.gif';
@@ -133,8 +133,8 @@ class _State extends State<Feedly> {
         }
         int timestamp = issue['published'] as int;
         _continuation = timestamp.toString();
-        var format = new DateFormat('yyyy-MM-dd HH:mm:ss');
-        var publishedDate = new DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
+        var format = DateFormat('yyyy-MM-dd HH:mm:ss');
+        var publishedDate = DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
         var formatDate = format.format(publishedDate);
         _items.add(Item(
           title: issue['title'] as String,
@@ -171,10 +171,10 @@ class _State extends State<Feedly> {
                     return _buildCupertinoActionSheet();
                   });
             },
-            child: Text('menu'),
+            child: const Text('wenu'),
           ),
         ),
-        child: (_items == null || _items.length == 0)
+        child: (_items.isEmpty)
             ? Text(
                 "Loading....",
                 style: _buildTextStyle(),
@@ -251,7 +251,7 @@ class _State extends State<Feedly> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -267,7 +267,7 @@ class _State extends State<Feedly> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -283,7 +283,7 @@ class _State extends State<Feedly> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -299,7 +299,7 @@ class _State extends State<Feedly> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -329,9 +329,9 @@ class _State extends State<Feedly> {
   }
 }
 
-var myTextStyle = TextStyle();
+var myTextStyle = const TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = TextStyle(
+  return myTextStyle = const TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,
@@ -339,9 +339,9 @@ TextStyle _buildTextStyle() {
   );
 }
 
-var subTitleTextStyle = TextStyle();
+var subTitleTextStyle = const TextStyle();
 TextStyle _buildSubTitleTextStyle() {
-  return subTitleTextStyle = TextStyle(
+  return subTitleTextStyle = const TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 13,
@@ -380,11 +380,17 @@ String fromAtNow(String sentDateJst) {
     double inMonths = sec / 60 / 60 / 24 / 30;
     int intMonths = inMonths.toInt();
     //if(intMonths < 2)  return 'a month ago';
-    if(intMonths < 2)  return 'a month';
+    if(intMonths < 2) {
+      return 'a month';
+    }
     //else if(intMonths > 11)  return 'a year ago';
-    else if(intMonths > 11)  return 'a year';
+    else if(intMonths > 11) {
+      return 'a year';
+    }
     //else return '${intMonths} months ago';
-    else return '${intMonths} months';
+    else {
+      return '$intMonths months';
+    }
   } else if (sec >= 60 * 60 * 24) {
     //return '${difference.inDays.toString()} days ago';
     return '${difference.inDays.toString()}d';
