@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'CupertinoWebView.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Qiita extends StatefulWidget {
   @override
@@ -44,7 +42,6 @@ class _State extends State<Qiita> {
 
   var _tag = 'flutter';
 
-  final _tagsTrends = 'trends';
   final _tagFlutter = 'flutter';
   final _tagReact   = 'react';
   final _tagSwift   = 'swift';
@@ -73,7 +70,7 @@ class _State extends State<Qiita> {
         _isLoading = true;
         _savedPage++;
         _load(_savedPage, _perPage);
-        print('_load');
+        //print('_load');
         //print(positionRate);  // debug
       }
     } else {
@@ -143,10 +140,10 @@ class _State extends State<Qiita> {
                     return _buildCupertinoActionSheet();
                   });
             },
-            child: Text('menu'),
+            child: const Text('menu'),
           ),
         ),
-        child: (_items == null || _items.length == 0)
+        child: (_items.isEmpty)
             ? Text(
                 "Loading....",
                 style: _buildTextStyle(),
@@ -248,7 +245,7 @@ class _State extends State<Qiita> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -259,11 +256,11 @@ class _State extends State<Qiita> {
           child: const Text('page 100'),
           onPressed: () {
             _savedPage = 100;
-            print(_savedPage);
+            //print(_savedPage);
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -278,7 +275,7 @@ class _State extends State<Qiita> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -293,7 +290,7 @@ class _State extends State<Qiita> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -308,7 +305,7 @@ class _State extends State<Qiita> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -323,7 +320,7 @@ class _State extends State<Qiita> {
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               curve: Curves.easeOutCirc,
             );
             _load(_savedPage, _perPage);
@@ -353,9 +350,9 @@ class _State extends State<Qiita> {
   }
 }
 
-var myTextStyle = TextStyle();
+var myTextStyle = const TextStyle();
 TextStyle _buildTextStyle() {
-  return myTextStyle = TextStyle(
+  return myTextStyle = const TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 16,
@@ -363,9 +360,9 @@ TextStyle _buildTextStyle() {
   );
 }
 
-var subTitleTextStyle = TextStyle();
+var subTitleTextStyle = const TextStyle();
 TextStyle _buildSubTitleTextStyle() {
-  return subTitleTextStyle = TextStyle(
+  return subTitleTextStyle = const TextStyle(
     fontWeight: FontWeight.w100,
     decoration: TextDecoration.none,
     fontSize: 13,
@@ -382,9 +379,15 @@ String fromAtNow(String sentDateJst) {
   if (sec >= 60 * 60 * 24 * 30) {
     double inMonths = sec / 60 / 60 / 24 / 30;
     int intMonths = inMonths.toInt();
-    if(intMonths < 2)  return 'a month';
-    else if(intMonths > 11)  return 'a year';
-    else return '${intMonths} months';
+    if(intMonths < 2) {
+       return 'a month';
+    }
+    else if(intMonths > 11) {
+      return 'a year';
+    }
+    else {
+      return '$intMonths months';
+    }
   } else if (sec >= 60 * 60 * 24) {
     if(difference.inDays == 1) {
       return 'a day';
