@@ -37,7 +37,7 @@ class Item {
 class _State extends State<Feedly> {
   ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
-  int _count = 0;
+  String _count = "0";
 
   List<Item> _items = <Item>[];
 
@@ -139,16 +139,15 @@ class _State extends State<Feedly> {
         var format = DateFormat('yyyy-MM-dd HH:mm:ss');
         var publishedDate = DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000);
         var formatDate = format.format(publishedDate);
-        var url = issue['alternate'][0]['href'] as String;
-        _getFavCount(url);
+        var _url = issue['alternate'][0]['href'] as String;
+        _getFavCount(_url);
         _items.add(Item(
           title: issue['title'] as String,
           author: issue['author'] as String,
           profileImageUrl: profileImage,
           published: formatDate,
-          url: issue['alternate'][0]['href'] as String,
-          //count: '',
-          count: _count.toString(),
+          url: _url,
+          count: _count,
         ));
       });
     });
@@ -159,22 +158,14 @@ class _State extends State<Feedly> {
       Uri.parse('https://bookmark.hatenaapis.com/count/entry?url=' + _url),
     );
 
-    for(int i=0; i<5; i++) {
-      //print(_items[i].url);
+    for(int i=0; i<_items.length; i++) {
       if(_items[i].url == _url) {
         _items[i].count = res.body;
-        print('cc');
-        print(_items[i].count);
         setState(() {
-           _count = int.parse((res.body).toString());
+           _count = res.body.toString();
         });
       }
     }
-
-    //print('aa');
-    //print(res.body);
-    _count = int.parse((res.body).toString());
-    //return res.body;
   }
 
   @override
