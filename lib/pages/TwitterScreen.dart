@@ -22,6 +22,7 @@ class Item {
     this.profile_image_url,
     this.is_quote_status,
     this.image,
+    this.created_at,
   });
 
   final String? id_str;
@@ -31,18 +32,24 @@ class Item {
   final String? profile_image_url;
   final bool? is_quote_status;
   final List<String>? image;
+  final String? created_at;
 }
 
 class _State extends State<Twitter> {
   ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
   List<Item> _items = <Item>[];
+  List<String> _images = [];
   int _savedPage = 1;
+  //var _screenName = 'twitterjp';
+  var _screenName = Constants.twitterScreenName;
   var _maxId = "0";
+  //var _maxId = "1345384785684393984";
+  //var _maxId = "1341384785684393984";  //min
   var _imagesCount = 0;
   //double _pageMaxScrollExtend = 877.0; // Simulator iPhone 13, _perPage 20の時
-  double _pageMaxScrollExtend = 19877.0; // Simulator iPhone 13, 200の時 
-  double _maxScrollExtend = 19877.0;
+  double _pageMaxScrollExtend = 8770.0; // Simulator iPhone 13, 200の時 
+  double _maxScrollExtend = 8770.0;
 
   final platform = oauth1.Platform(
     'https://api.twitter.com/oauth/request_token',
@@ -102,8 +109,6 @@ class _State extends State<Twitter> {
       ),
     );
     var url;
-    //var _screenName = 'twitterjp';
-    var _screenName = Constants.twitterScreenName;
     if(_maxId == '0')
     {
       url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + _screenName + '&count=200&exclude_replies=true';
@@ -111,12 +116,9 @@ class _State extends State<Twitter> {
     else
     {
       url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + _screenName + '&count=200&max_id=' + _maxId;
-      //print('url');
-      //print(url);
     } 
     final apiResponse = await client.get(Uri.parse(url),);
     final data = json.decode(apiResponse.body);
-    final List<String> _images = [];
 
     setState((){
       final items = data as List;
@@ -125,8 +127,8 @@ class _State extends State<Twitter> {
         try {
           for (var _url in issue['extended_entities']['media']) {
             _images.add(_url['media_url']);
+            _imagesCount = _imagesCount + 1;
           }
-          _imagesCount = _images.length;
           //print(_imagesCount);
         }
         catch (e) {
@@ -139,6 +141,7 @@ class _State extends State<Twitter> {
           //profile_image_url:   issue['user']['profile_image_url'] as String,
           //is_quote_status:   issue['is_quote_status'] as bool,
           image: _images,
+          created_at: issue['created_at'] as String,
         ));
       });
       _maxId = _items[_items.length-1].id_str as String;
@@ -146,6 +149,9 @@ class _State extends State<Twitter> {
       print(_maxId);
       print('_imagesCount');
       print(_imagesCount);
+      String _createdAt = _items[_items.length-1].created_at as String;
+      print('_createdAt');
+      print(_createdAt);
     });
     //print(apiResponse.body);
     //print(_items[0].text);
@@ -162,6 +168,16 @@ class _State extends State<Twitter> {
       navigationBar: CupertinoNavigationBar(
         backgroundColor: isDarkMode ? darkModeBackColor : backColor,
         middle: Text("Twitter", style: _buildTextStyle()),
+        trailing: CupertinoButton(
+            onPressed: () {
+              showCupertinoModalPopup(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return _buildCupertinoActionSheet();
+                  });
+            },
+            child: Text('menu'),
+          ),
       ),
       child: (_items == null || _items.length == 0)
         ? Text("Loading....", style: _buildTextStyle())
@@ -191,6 +207,131 @@ class _State extends State<Twitter> {
               )
             )
          ])
+    );
+  }
+
+  Widget _buildCupertinoActionSheet() {
+    return CupertinoActionSheet(
+      //title: const Text('選択した項目が画面に表示されます'),
+      actions: <Widget>[
+        /*CupertinoActionSheetAction(
+          child: const Text('Clear'),
+          onPressed: () {
+            // _savedPage++;
+            // _load(tags, _savedPage, _perPage);
+            setState(() {
+              _items.clear();
+            });
+            Navigator.pop(context, 'Clear');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('Next Page'),
+          onPressed: () {
+            _savedPage++;
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'Next Page');
+          },
+        ),*/
+        CupertinoActionSheetAction(
+          child: const Text('screenName'),
+          onPressed: () {
+            _isLoading = true;
+            _savedPage = 1;
+            _screenName = Constants.twitterScreenName;
+            _maxId = "0";
+            _items.clear();
+            _images.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load();
+            print('_load 1');
+            //print(positionRate);  // debug
+            Navigator.pop(context, 'screenName');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('screenName2'),
+          onPressed: () {
+            _isLoading = true;
+            _savedPage = 1;
+            _screenName = Constants.twitterScreenName2;
+            _maxId = "0";
+            _items.clear();
+            _images.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load();
+            print('_load 2');
+            //print(positionRate);  // debug
+            Navigator.pop(context, 'screenName2');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('screenName3'),
+          onPressed: () {
+            _isLoading = true;
+            _savedPage = 1;
+            _screenName = Constants.twitterScreenName3;
+            _maxId = "0";
+            _items.clear();
+            _images.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load();
+            print('_load 3');
+            //print(positionRate);  // debug
+            Navigator.pop(context, 'screenName3');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('screenName4'),
+          onPressed: () {
+            _isLoading = true;
+            _savedPage = 1;
+            _screenName = Constants.twitterScreenName4;
+            _maxId = "0";
+            _items.clear();
+            _images.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load();
+            print('_load 4');
+            //print(positionRate);  // debug
+            Navigator.pop(context, 'screenName4');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('load'),
+          onPressed: () {
+            _isLoading = true;
+            _savedPage++;
+            _load();
+            print('_load ActionSheetAction');
+            //print(positionRate);  // debug
+            Navigator.pop(context, 'load');
+          },
+        ),
+      ],
+      cancelButton: CupertinoActionSheetAction(
+        child: const Text('Cancel'),
+        isDefaultAction: true,
+        onPressed: () {
+          Navigator.pop(context, 'Cancel');
+        },
+      ),
     );
   }
 }
