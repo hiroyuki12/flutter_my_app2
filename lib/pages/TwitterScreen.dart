@@ -167,7 +167,7 @@ class _State extends State<Twitter> {
       backgroundColor: isDarkMode ? darkModeBackColor : backColor,
       navigationBar: CupertinoNavigationBar(
         backgroundColor: isDarkMode ? darkModeBackColor : backColor,
-        middle: Text("Twitter", style: _buildTextStyle()),
+        middle: Text("Twitter " + _imagesCount.toString(), style: _buildTextStyle()),
         trailing: CupertinoButton(
             onPressed: () {
               showCupertinoModalPopup(
@@ -238,6 +238,7 @@ class _State extends State<Twitter> {
           onPressed: () {
             _isLoading = true;
             _savedPage = 1;
+            _imagesCount = 0;
             _screenName = Constants.twitterScreenName;
             _maxId = "0";
             _items.clear();
@@ -258,6 +259,7 @@ class _State extends State<Twitter> {
           onPressed: () {
             _isLoading = true;
             _savedPage = 1;
+            _imagesCount = 0;
             _screenName = Constants.twitterScreenName2;
             _maxId = "0";
             _items.clear();
@@ -278,6 +280,7 @@ class _State extends State<Twitter> {
           onPressed: () {
             _isLoading = true;
             _savedPage = 1;
+            _imagesCount = 0;
             _screenName = Constants.twitterScreenName3;
             _maxId = "0";
             _items.clear();
@@ -298,6 +301,7 @@ class _State extends State<Twitter> {
           onPressed: () {
             _isLoading = true;
             _savedPage = 1;
+            _imagesCount = 0;
             _screenName = Constants.twitterScreenName4;
             _maxId = "0";
             _items.clear();
