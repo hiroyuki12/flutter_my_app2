@@ -259,6 +259,7 @@ class _State extends State<Qiita> {
           child: const Text('page 100'),
           onPressed: () {
             _savedPage = 100;
+            print(_savedPage);
             _items.clear();
             _scrollController.animateTo(
               0,  // first item
@@ -381,17 +382,25 @@ String fromAtNow(String sentDateJst) {
   if (sec >= 60 * 60 * 24 * 30) {
     double inMonths = sec / 60 / 60 / 24 / 30;
     int intMonths = inMonths.toInt();
-    if(intMonths < 2)  return 'a month ago';
-    else if(intMonths > 11)  return 'a year ago';
-    else return '${intMonths} months ago';
+    if(intMonths < 2)  return 'a month';
+    else if(intMonths > 11)  return 'a year';
+    else return '${intMonths} months';
   } else if (sec >= 60 * 60 * 24) {
-    return '${difference.inDays.toString()} days ago';
+    if(difference.inDays == 1) {
+      return 'a day';
+    } else {
+      return '${difference.inDays.toString()} days';
+    }
   } else if (sec >= 60 * 60) {
-    return '${difference.inHours.toString()} hours ago';
+    if(difference.inHours == 1) {
+      return 'an hour';
+    } else {
+      return '${difference.inHours.toString()} hours';
+    }
   } else if (sec >= 60) {
-    return '${difference.inMinutes.toString()} minutes ago';
+    return '${difference.inMinutes.toString()} minutes';
   } else {
-    return '$sec seconds ago';
+    return '$sec seconds';
   }
 }
 
