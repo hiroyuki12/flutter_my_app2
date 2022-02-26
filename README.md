@@ -156,3 +156,8 @@ https://qiita.com/int_main_Nick/items/19581999ff746b8e2854
 coc-flutter　補完表示、コードチェック
 https://dev.classmethod.jp/articles/cocnvim-adventcalendar-day21/
 
+はてなブックマーク件数取得API　GET リクエストでのシンプルなAPI
+http://developer.hatena.ne.jp/ja/documents/bookmark/apis/getcount
+
+FlutterのsetStateとは？　setStateの中で_countに値をセットして、画面表示更新
+https://qiita.com/koizumiim/items/5cc0f68d224b2cc949ba
