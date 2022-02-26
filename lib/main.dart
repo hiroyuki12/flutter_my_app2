@@ -69,30 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       'https://mbp.hatenablog.com/entry/2022/02/05/143159');
                 }),
             CupertinoButton(
-              child: Text("Qiita(API)"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Qiita())),
-            ),
-            CupertinoButton(
-              child: Text("Mstdn(API)"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Mastodon())),
-            ),
-            CupertinoButton(
-              child: Text("(Need API KEY)Twitter(API)"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Twitter())),
-            ),
-            CupertinoButton(
-              child: Text("(Need Developer Token)Feedly(API)"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Feedly())),
-            ),
-            /*CupertinoButton(
-              child: Text("Cupertino Firebase"),
+              child: Text("Cupertino Menu ->"),
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CupertinoFirebase())),
-            ),*/
+                  MaterialPageRoute(builder: (context) => CupertinoMenu())),
+            ),
+            CupertinoButton(
+              child: Text("Basics Menu ->"),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BasicsMenu())),
+            ),
             CupertinoButton(
                 child: Text("Zenn(Flutter) 外部サイト"),
                 onPressed: () async {
@@ -110,19 +95,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   await _launchURL('https://d.hatena.ne.jp/keyword/flutter');
                 }),
             CupertinoButton(
+              child: Text("Qiita(API)"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Qiita())),
+            ),
+            CupertinoButton(
+              child: Text("Mstdn(API)"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Mastodon())),
+            ),
+            CupertinoButton(
+              child: Text("Twitter(API)(Need API KEY)"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Twitter())),
+            ),
+            CupertinoButton(
+              child: Text("Feedly(API)(Need Developer Token)"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Feedly())),
+            ),
+            /*CupertinoButton(
+              child: Text("Cupertino Firebase"),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CupertinoFirebase())),
+            ),*/
+            CupertinoButton(
               child: Text("sub ->"),
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CupertinoSub())),
-            ),
-            CupertinoButton(
-              child: Text("Cupertino Menu ->"),
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CupertinoMenu())),
-            ),
-            CupertinoButton(
-              child: Text("Basics Menu ->"),
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => BasicsMenu())),
             ),
           ],
         ),
