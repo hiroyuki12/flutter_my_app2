@@ -242,6 +242,34 @@ class _State extends State<Qiita> {
           },
         ),*/
         CupertinoActionSheetAction(
+          child: const Text('page 1'),
+          onPressed: () {
+            _savedPage = 1;
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'tag vim');
+          },
+        ),
+        CupertinoActionSheetAction(
+          child: const Text('page 100'),
+          onPressed: () {
+            _savedPage = 100;
+            _items.clear();
+            _scrollController.animateTo(
+              0,  // first item
+              duration: Duration(seconds: 2),
+              curve: Curves.easeOutCirc,
+            );
+            _load(_savedPage, _perPage);
+            Navigator.pop(context, 'tag vim');
+          },
+        ),
+        CupertinoActionSheetAction(
           child: const Text('tag vim'),
           onPressed: () {
             _tag = _tagVim;
