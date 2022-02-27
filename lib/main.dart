@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'pages/qiitaScreen.dart';
 import 'pages/MastodonScreen.dart';
 import 'pages/Cupertino/CupertinoMenu.dart';
-import 'pages/Cupertino/CupertinoSub.dart';
+import 'pages/sub/CupertinoSubMenu.dart';
 import 'pages/Basics/BasicsMenu.dart';
 import 'pages/TwitterScreen.dart';
 import 'pages/FeedlyScreen.dart';

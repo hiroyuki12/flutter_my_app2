@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'DarkModeColor.dart';
+import '../DarkModeColor.dart';
 
 class MyCamera extends StatefulWidget {
   @override

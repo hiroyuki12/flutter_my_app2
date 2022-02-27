@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'DarkModeColor.dart';
+import '../DarkModeColor.dart';
 //import '../Firebase/CupertinoFirebaseSignup.dart';
-import '../../pages/TwitterScreen.dart';
-import '../../pages/QrCodeReader/first_page_view.dart';
-import '../../pages/CameraScreen.dart';
+import 'QrCodeReader/first_page_view.dart';
+import 'CameraScreen.dart';
 
 class CupertinoSub extends StatefulWidget {
   @override
@@ -30,17 +29,12 @@ class _State extends State<CupertinoSub> {
         child: Column(
           children: <Widget>[
             CupertinoButton(
-              child: Text("(Need API KEY)Twitter(API)"),
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Twitter())),
-            ),
-            CupertinoButton(
-              child: Text("QR code scanner"),
+              child: const Text("QR code scanner"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => FirstPageView())),
             ),
             CupertinoButton(
-              child: Text("Camera"),
+              child: const Text("Camera"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCamera())),
             ),

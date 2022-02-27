@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'first_page_view.dart';
-import '../DarkModeColor.dart';
+import '../../DarkModeColor.dart';
 
 @immutable
 class ConfirmViewArguments {

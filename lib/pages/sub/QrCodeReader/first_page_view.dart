@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'confirm_view.dart';
 import 'qr_code_scanner_view.dart';
-import '../DarkModeColor.dart';
+import '../../DarkModeColor.dart';
 
 class Const {
   //static const routeFirstPage = '/home';
