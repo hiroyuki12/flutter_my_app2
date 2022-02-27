@@ -4,6 +4,7 @@ import '../DarkModeColor.dart';
 //import '../Firebase/CupertinoFirebaseSignup.dart';
 import 'QrCodeReader/first_page_view.dart';
 import 'CameraScreen.dart';
+import 'pokemon_screen.dart';
 
 class CupertinoSub extends StatefulWidget {
   @override
@@ -37,6 +38,11 @@ class _State extends State<CupertinoSub> {
               child: const Text("Camera"),
               onPressed: () => Navigator.push(
                   context, MaterialPageRoute(builder: (context) => MyCamera())),
+            ),
+            CupertinoButton(
+              child: const Text("Pokemon"),
+              onPressed: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Pokemon())),
             ),
             /*CupertinoButton(
               child: Text("(Need API Key) Firebase(signup)"),
