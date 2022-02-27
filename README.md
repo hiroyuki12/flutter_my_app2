@@ -161,3 +161,6 @@ http://developer.hatena.ne.jp/ja/documents/bookmark/apis/getcount
 
 FlutterのsetStateとは？　setStateの中で_countに値をセットして、画面表示更新
 https://qiita.com/koizumiim/items/5cc0f68d224b2cc949ba
+
+ポケモンから学ぶFlutter. Step8: APIを呼び出してデータを取得してみよう
+https://zenn.dev/sugitlab/books/flutter_poke_app_handson/viewer/step8
