@@ -65,7 +65,7 @@ class _SnackBarBodyState extends State<SnackBarBody> {
                 ),
               );
               // Find the Scaffold in the Widget tree and use it to show a SnackBar!
-              Scaffold.of(context).showSnackBar(snackBar);
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             child: Text('Show SnackBar', style: _buttonTextStyleNoBackground),
           ),

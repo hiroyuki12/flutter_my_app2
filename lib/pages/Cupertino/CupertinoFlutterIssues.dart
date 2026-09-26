@@ -81,7 +81,7 @@ class _State extends State<CupertinoFlutterIssues> {
   }
 
   Widget _buildTrailingButton() {
-    return FlatButton(
+    return TextButton(
       child: Text(_buttonTitle, style: _myTextStyle),
       onPressed: () {
         setState(() {

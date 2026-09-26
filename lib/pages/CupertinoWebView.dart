@@ -17,8 +17,27 @@ class MyCupertinoWebView extends StatefulWidget {
 }
 
 class _State extends State<MyCupertinoWebView> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  late final WebViewController _controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setNavigationDelegate(NavigationDelegate(
+      onPageStarted: (String url) {
+        setState(() {
+          _isLoading = true;
+        });
+      },
+      onPageFinished: (String url) async {
+        setState(() {
+          _isLoading = false;
+        });
+        final title = await _controller.getTitle();
+        setState(() {
+          if (title != null) {
+            _title = title;
+          }
+        });
+      },
+    ))
+    ..loadRequest(Uri.parse(widget.url ?? 'about:blank'));
 
   bool _isLoading = false;
   String _title = '';
@@ -44,27 +63,7 @@ class _State extends State<MyCupertinoWebView> {
       ),
 
       child: Center(
-        child: WebView(
-            initialUrl: widget.url,
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: _controller.complete,
-            onPageStarted: (String url) {
-              setState(() {
-                _isLoading = true;
-              });
-            },
-            onPageFinished: (String url) async {
-              setState(() {
-                _isLoading = false;
-              });
-              final controller = await _controller.future;
-              final title = await controller.getTitle();
-              setState(() {
-                if (title != null) {
-                  _title = title;
-                }
-              });
-            }), //WebView
+        child: WebViewWidget(controller: _controller), //WebView
       ), //Center
     );
   }

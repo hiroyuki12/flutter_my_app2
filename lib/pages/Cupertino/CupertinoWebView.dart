@@ -17,7 +17,9 @@ class MyCupertinoWebView extends StatefulWidget {
 }
 
 class _State extends State<MyCupertinoWebView> {
-  WebViewController? _controller;
+  late final WebViewController _controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..loadRequest(Uri.parse(widget.url ?? 'about:blank'));
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +41,7 @@ class _State extends State<MyCupertinoWebView> {
             isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       ),
       child: Center(
-        child: WebView(
-          initialUrl: widget.url,
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController controller) {
-            _controller = controller;
-          },
-        ),
+        child: WebViewWidget(controller: _controller),
       ),
     );
   }

@@ -13,8 +13,27 @@ class TestCupertinoWebView extends StatefulWidget {
 }
 
 class _State extends State<TestCupertinoWebView> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  late final WebViewController _controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setNavigationDelegate(NavigationDelegate(
+      onPageStarted: (String url) {
+        setState(() {
+          _isLoading = true;
+        });
+      },
+      onPageFinished: (String url) async {
+        setState(() {
+          _isLoading = false;
+        });
+        final title = await _controller.getTitle();
+        setState(() {
+          if (title != null) {
+            _title = title;
+          }
+        });
+      },
+    ))
+    ..loadRequest(Uri.parse('https://flutter.dev'));
 
   bool _isLoading = false;
   String _title = '';
@@ -36,27 +55,7 @@ class _State extends State<TestCupertinoWebView> {
             isDarkMode ? darkModeBackColor : backColor, //white , darkMode=black
       ),
       child: Center(
-        child: WebView(
-            initialUrl: 'https://flutter.dev',
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: _controller.complete,
-            onPageStarted: (String url) {
-              setState(() {
-                _isLoading = true;
-              });
-            },
-            onPageFinished: (String url) async {
-              setState(() {
-                _isLoading = false;
-              });
-              final controller = await _controller.future;
-              final title = await controller.getTitle();
-              setState(() {
-                if (title != null) {
-                  _title = title;
-                }
-              });
-            }), //WebView
+        child: WebViewWidget(controller: _controller), //WebView
       ), //Center
     ); //CupertinoPageScaffold
   } //build
